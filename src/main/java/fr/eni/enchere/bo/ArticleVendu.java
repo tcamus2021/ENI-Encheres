@@ -222,8 +222,8 @@ public class ArticleVendu {
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
 		if (this.utilisateur == null) {
-			utilisateur.addListeArticlesVendus(this);
 			this.utilisateur = utilisateur;
+			this.utilisateur.addListeArticlesVendus(this);
 		}
 	}
 
@@ -294,7 +294,7 @@ public class ArticleVendu {
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur
+				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur.getPrenom()
 				+ ", categorieArticle=" + categorieArticle + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
 				+ listeEnchere + "]";
 	}
