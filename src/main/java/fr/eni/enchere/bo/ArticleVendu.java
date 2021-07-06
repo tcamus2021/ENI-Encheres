@@ -295,7 +295,7 @@ public class ArticleVendu {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
 				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur.getPrenom()
-				+ ", categorieArticle=" + categorieArticle + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
+				+ ", categorieArticle=" + categorieArticle.getLibelle() + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
 				+ listeEnchere + "]";
 	}
 

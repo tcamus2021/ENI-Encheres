@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -33,6 +34,14 @@ public class TestBO extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Categorie horlogerie = new Categorie();
+		horlogerie.setNoCategorie(0);
+		horlogerie.setLibelle("Horlogerie");
+		
+		Categorie boucherie = new Categorie();
+		boucherie.setNoCategorie(1);
+		boucherie.setLibelle("Boucherie");
+		
 		Utilisateur rene = new Utilisateur();
 		rene.setNoUtilisateur(0);
 		rene.setPseudo("Xx_Rene_Du_24XX");
@@ -56,7 +65,7 @@ public class TestBO extends HttpServlet {
 		a0.setMiseAPrix(500);
 		a0.setPrixVente(600);
 		a0.setEtatVente("En cours");
-		a0.setCategorieArticle(new Categorie(0, "Horlogerie", new ArrayList<>()));
+		a0.setCategorieArticle(horlogerie);
 		a0.setUtilisateur(rene);
 		
 		System.out.println("_________________Test lien d'articleVendu vers utilisateur____________________");
@@ -72,7 +81,7 @@ public class TestBO extends HttpServlet {
 		a1.setMiseAPrix(1000);
 		a1.setPrixVente(1500);
 		a1.setEtatVente("Bientot");
-		a1.setCategorieArticle(new Categorie(1, "Boucherie", new ArrayList<>()));
+		a1.setCategorieArticle(boucherie);
 		
 		Utilisateur robert = new Utilisateur();
 		robert.setNoUtilisateur(1);
@@ -92,6 +101,25 @@ public class TestBO extends HttpServlet {
 		System.out.println("_________________Test lien d'utilisateur vers Articlevendu____________________");
 		System.out.println(robert.toString());
 		System.out.println(a1.toString());
+		
+		Enchere e0 = new Enchere();
+		e0.setMontantEnchere(1600);
+		e0.setDateEnchere(Date.valueOf(LocalDate.now()));
+		e0.setUtilisateur(rene);
+		
+		Enchere e1 = new Enchere();
+		e1.setMontantEnchere(1700);
+		e1.setDateEnchere(Date.valueOf(LocalDate.now()));
+		e1.setUtilisateur(robert);
+		
+		System.out.println("_________________Test lien Utilisateur Encheres____________________");
+		System.out.println(e0.toString());
+		System.out.println(e1.toString());
+		System.out.println(rene.getPrenom() + " " + rene.getListeEncheres());
+		System.out.println(robert.getPrenom() + " " +  robert.getListeEncheres());
+		
+		
+		
 	}
 
 	/**

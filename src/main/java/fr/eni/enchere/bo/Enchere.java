@@ -88,7 +88,10 @@ public class Enchere {
 	 * @param utilisateur
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+		if (this.utilisateur == null) {
+			this.utilisateur = utilisateur;
+			this.utilisateur.addListeEncheres(this);
+		}
 	}
 
 	/**
@@ -117,7 +120,7 @@ public class Enchere {
 		builder.append(", montantEnchere=");
 		builder.append(montantEnchere);
 		builder.append(", utilisateur=");
-		builder.append(utilisateur.getNom());
+		builder.append(utilisateur.getPrenom());
 		builder.append(", articleVendu=");
 		builder.append(articleVendu);
 		builder.append("]");

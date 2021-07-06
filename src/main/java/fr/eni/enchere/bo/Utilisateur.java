@@ -354,8 +354,8 @@ public class Utilisateur {
 			}
 		}
 		if (!trouver) { // Si il n'a pas été trouvé on le met dans la liste
-			this.listeArticlesVendus.add(articleVendu);
 			articleVendu.setUtilisateur(this); // Ajout de l'utilisateur qu'on manipule dans l'objet ArticleVendu
+			this.listeArticlesVendus.add(articleVendu);
 		}
 	}
 
@@ -383,7 +383,18 @@ public class Utilisateur {
 	 * @param enchere
 	 */
 	public void addListeEncheres(Enchere enchere) {
-		this.listeEncheres.add(enchere);
+		boolean trouver = false;
+		if (this.listeEncheres.size() != 0) {
+			for (Enchere enchereForeach : this.listeEncheres) {
+				if (enchereForeach.getDateEnchere().equals(enchere.getDateEnchere())) {
+					trouver = true;
+				}
+			}
+		}
+		if (!trouver) {
+			this.listeEncheres.add(enchere);
+			enchere.setUtilisateur(this);
+		}
 	}
 
 	@Override
