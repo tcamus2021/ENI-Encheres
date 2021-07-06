@@ -221,7 +221,10 @@ public class ArticleVendu {
 	 * @param utilisateur
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+		if (this.utilisateur == null) {
+			utilisateur.addListeArticlesVendus(this);
+			this.utilisateur = utilisateur;
+		}
 	}
 
 	/**
