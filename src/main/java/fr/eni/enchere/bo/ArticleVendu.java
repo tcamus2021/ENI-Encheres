@@ -221,7 +221,10 @@ public class ArticleVendu {
 	 * @param utilisateur
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+		if (this.utilisateur == null) {
+			this.utilisateur = utilisateur;
+			this.utilisateur.addListeArticlesVendus(this);
+		}
 	}
 
 	/**
@@ -283,17 +286,28 @@ public class ArticleVendu {
 	 * 
 	 * @param enchere
 	 */
-	public void addEnchere(Enchere enchere) {
-		this.listeEnchere.add(enchere);
+	public void addListeEnchere(Enchere enchere) {
+		boolean trouver = false;
+		if (this.listeEnchere.size() != 0) {
+			for (Enchere enchereForeach : this.listeEnchere) {
+				if (enchereForeach.getIdEnchere() == enchere.getIdEnchere()) {
+					trouver = true;
+				}
+			}
+		}
+		if (!trouver) {
+			this.listeEnchere.add(enchere);
+			enchere.setArticleVendu(this);
+		}
 	}
 
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur
-				+ ", categorieArticle=" + categorieArticle + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
-				+ listeEnchere + "]";
+				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur.getPrenom()
+				+ ", categorieArticle=" + categorieArticle.getLibelle() + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
+				+ listeEnchere.size() + "]"; // TODO
 	}
 
 }

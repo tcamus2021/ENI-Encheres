@@ -28,7 +28,6 @@ public class Utilisateur {
 	/**
 	 * Constructeur vide
 	 */
-
 	public Utilisateur() {
 		super();
 	}
@@ -345,7 +344,19 @@ public class Utilisateur {
 	 * @param ArticleVendu
 	 */
 	public void addListeArticlesVendus(ArticleVendu articleVendu) {
-		this.listeArticlesVendus.add(articleVendu);
+		boolean trouver = false; // Booléen si un article de même numéro est trouvé dans la liste
+		if (this.listeArticlesVendus.size() != 0) {
+			for (ArticleVendu articleVenduForeach : listeArticlesVendus) {
+				if (articleVenduForeach.getNoArticle() == articleVendu.getNoArticle()) { // La condition pour trouver le
+																							// même numéro
+					trouver = true;
+				}
+			}
+		}
+		if (!trouver) { // Si il n'a pas été trouvé on le met dans la liste
+			articleVendu.setUtilisateur(this); // Ajout de l'utilisateur qu'on manipule dans l'objet ArticleVendu
+			this.listeArticlesVendus.add(articleVendu);
+		}
 	}
 
 	/**
@@ -372,7 +383,18 @@ public class Utilisateur {
 	 * @param enchere
 	 */
 	public void addListeEncheres(Enchere enchere) {
-		this.listeEncheres.add(enchere);
+		boolean trouver = false;
+		if (this.listeEncheres.size() != 0) {
+			for (Enchere enchereForeach : this.listeEncheres) {
+				if (enchereForeach.getIdEnchere().equals(enchere.getIdEnchere())) {
+					trouver = true;
+				}
+			}
+		}
+		if (!trouver) {
+			this.listeEncheres.add(enchere);
+			enchere.setUtilisateur(this);
+		}
 	}
 
 	@Override
