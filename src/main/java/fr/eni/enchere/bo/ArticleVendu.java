@@ -260,7 +260,10 @@ public class ArticleVendu {
 	 * @param lieuRetrait
 	 */
 	public void setLieuRetrait(Retrait lieuRetrait) {
-		this.lieuRetrait = lieuRetrait;
+		if(this.lieuRetrait == null) {
+			this.lieuRetrait = lieuRetrait;
+			this.lieuRetrait.setArticle(this);
+		}
 	}
 
 	/**

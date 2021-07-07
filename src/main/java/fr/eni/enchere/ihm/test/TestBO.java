@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Enchere;
+import fr.eni.enchere.bo.Retrait;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -133,6 +134,28 @@ public class TestBO extends HttpServlet {
 		System.out.println(enchere1);
 		System.out.println(article0.getNomArticle() + " " + article0.getListeEnchere());
 		System.out.println(article1.getNomArticle() + " " + article1.getListeEnchere());
+
+		System.out.println("_________________Test lien ArticleVendu et retrait____________________");
+		
+		Retrait retrait0 = new Retrait();
+		retrait0.setIdRetrait(0);
+		retrait0.setRue("25 Grande rue");
+		retrait0.setCodePostal(29542);
+		retrait0.setVille("Paris");
+		
+		Retrait retrait1 = new Retrait();
+		retrait1.setIdRetrait(1);
+		retrait1.setRue("32 Petite rue");
+		retrait1.setCodePostal(46542);
+		retrait1.setVille("Morlaix");
+		
+		retrait0.setArticle(article0);
+		article1.setLieuRetrait(retrait1);
+		
+		System.out.println(retrait0);
+		System.out.println(retrait1);
+		System.out.println(article0);
+		System.out.println(article1);
 	}
 
 	/**

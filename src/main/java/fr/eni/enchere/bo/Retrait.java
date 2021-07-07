@@ -102,7 +102,10 @@ public class Retrait {
 	 * @param article
 	 */
 	public void setArticle(ArticleVendu article) {
-		this.article = article;
+		if(this.article == null) {
+			this.article = article;
+			this.article.setLieuRetrait(this);
+		}
 	}
 
 	/**
