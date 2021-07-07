@@ -6,6 +6,11 @@ import java.util.List;
 import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.dal.DAOEniEnchere;
 
+/**
+ * 
+ * @author rguezennec2021 & tcamus2021
+ *
+ */
 public class MockCategories implements DAOEniEnchere<Categorie> {
 	private List<Categorie> listeCategories = new ArrayList<>();
 

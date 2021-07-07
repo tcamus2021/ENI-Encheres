@@ -6,6 +6,11 @@ import java.util.List;
 import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.dal.DAOEniEnchere;
 
+/**
+ * 
+ * @author rguezennec2021 & tcamus2021
+ *
+ */
 public class MockArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 	private List<ArticleVendu> listeArticlesVendus = new ArrayList<>();
 
@@ -41,7 +46,7 @@ public class MockArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 	}
 
 	/**
-	 * Met un jour un article vendu
+	 * Met à jour un article vendu
 	 * 
 	 * @param articleVendu
 	 * @return
