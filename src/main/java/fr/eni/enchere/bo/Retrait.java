@@ -6,6 +6,7 @@ package fr.eni.enchere.bo;
  *
  */
 public class Retrait {
+	private Integer idRetrait;
 	private String rue;
 	private Integer codePostal;
 	private String ville;
@@ -102,6 +103,24 @@ public class Retrait {
 	 */
 	public void setArticle(ArticleVendu article) {
 		this.article = article;
+	}
+
+	/**
+	 * Getter de l'id
+	 * 
+	 * @return
+	 */
+	public Integer getIdRetrait() {
+		return idRetrait;
+	}
+
+	/**
+	 * Setter de l'id
+	 * 
+	 * @param idRetrait
+	 */
+	public void setIdRetrait(Integer idRetrait) {
+		this.idRetrait = idRetrait;
 	}
 
 	@Override

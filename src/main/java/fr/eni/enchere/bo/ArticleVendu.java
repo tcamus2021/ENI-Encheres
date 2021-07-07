@@ -286,8 +286,19 @@ public class ArticleVendu {
 	 * 
 	 * @param enchere
 	 */
-	public void addEnchere(Enchere enchere) {
-		this.listeEnchere.add(enchere);
+	public void addListeEnchere(Enchere enchere) {
+		boolean trouver = false;
+		if (this.listeEnchere.size() != 0) {
+			for (Enchere enchereForeach : this.listeEnchere) {
+				if (enchereForeach.getIdEnchere() == enchere.getIdEnchere()) {
+					trouver = true;
+				}
+			}
+		}
+		if (!trouver) {
+			this.listeEnchere.add(enchere);
+			enchere.setArticleVendu(this);
+		}
 	}
 
 	@Override
@@ -296,7 +307,7 @@ public class ArticleVendu {
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
 				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur.getPrenom()
 				+ ", categorieArticle=" + categorieArticle.getLibelle() + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
-				+ listeEnchere + "]";
+				+ listeEnchere.size() + "]"; // TODO
 	}
 
 }

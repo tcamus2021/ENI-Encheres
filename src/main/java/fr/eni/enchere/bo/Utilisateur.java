@@ -386,7 +386,7 @@ public class Utilisateur {
 		boolean trouver = false;
 		if (this.listeEncheres.size() != 0) {
 			for (Enchere enchereForeach : this.listeEncheres) {
-				if (enchereForeach.getDateEnchere().equals(enchere.getDateEnchere())) {
+				if (enchereForeach.getIdEnchere().equals(enchere.getIdEnchere())) {
 					trouver = true;
 				}
 			}

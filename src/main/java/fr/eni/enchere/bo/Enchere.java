@@ -9,6 +9,7 @@ import java.util.Date;
  */
 
 public class Enchere {
+	private Integer idEnchere;
 	private Date dateEnchere;
 	private Integer montantEnchere;
 	private Utilisateur utilisateur;
@@ -109,22 +110,34 @@ public class Enchere {
 	 * @param articleVendu
 	 */
 	public void setArticleVendu(ArticleVendu articleVendu) {
-		this.articleVendu = articleVendu;
+		if (this.articleVendu == null) {
+			this.articleVendu = articleVendu;
+			this.articleVendu.addListeEnchere(this);
+		}
+	}
+
+	/**
+	 * Getter de l'id
+	 * 
+	 * @return
+	 */
+	public Integer getIdEnchere() {
+		return idEnchere;
+	}
+
+	/**
+	 * Setter de l'id
+	 * 
+	 * @param idEnchere
+	 */
+	public void setIdEnchere(Integer idEnchere) {
+		this.idEnchere = idEnchere;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Enchere [dateEnchere=");
-		builder.append(dateEnchere);
-		builder.append(", montantEnchere=");
-		builder.append(montantEnchere);
-		builder.append(", utilisateur=");
-		builder.append(utilisateur.getPrenom());
-		builder.append(", articleVendu=");
-		builder.append(articleVendu);
-		builder.append("]");
-		return builder.toString();
+		return "Enchere [idEnchere=" + idEnchere + ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere
+				+ ", utilisateur=" + utilisateur.getPrenom() + ", articleVendu=" + articleVendu + "]"; //TODO
 	}
 
 }
