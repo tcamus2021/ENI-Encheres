@@ -34,14 +34,6 @@ public class TestBO extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Categorie horlogerie = new Categorie();
-		horlogerie.setNoCategorie(0);
-		horlogerie.setLibelle("Horlogerie");
-		
-		Categorie boucherie = new Categorie();
-		boucherie.setNoCategorie(1);
-		boucherie.setLibelle("Boucherie");
-		
 		System.out.println("_________________Test lien d'articleVendu vers utilisateur____________________");
 		
 		Utilisateur rene = new Utilisateur();
@@ -67,7 +59,6 @@ public class TestBO extends HttpServlet {
 		article0.setMiseAPrix(500);
 		article0.setPrixVente(600);
 		article0.setEtatVente("En cours");
-		article0.setCategorieArticle(horlogerie);
 		article0.setUtilisateur(rene);
 		
 		System.out.println(rene.toString());
@@ -84,7 +75,6 @@ public class TestBO extends HttpServlet {
 		article1.setMiseAPrix(1000);
 		article1.setPrixVente(1500);
 		article1.setEtatVente("Bientot");
-		article1.setCategorieArticle(boucherie);
 		
 		Utilisateur robert = new Utilisateur();
 		robert.setNoUtilisateur(1);
@@ -154,6 +144,24 @@ public class TestBO extends HttpServlet {
 		
 		System.out.println(retrait0);
 		System.out.println(retrait1);
+		System.out.println(article0);
+		System.out.println(article1);
+
+		System.out.println("_________________Test lien ArticleVendu et Catégorie____________________");
+		
+		Categorie horlogerie = new Categorie();
+		horlogerie.setNoCategorie(0);
+		horlogerie.setLibelle("Horlogerie");
+		
+		Categorie boucherie = new Categorie();
+		boucherie.setNoCategorie(1);
+		boucherie.setLibelle("Boucherie");
+		
+		article0.setCategorieArticle(horlogerie);
+		boucherie.addArticleVendu(article1);
+		
+		System.out.println(horlogerie);
+		System.out.println(boucherie);
 		System.out.println(article0);
 		System.out.println(article1);
 	}

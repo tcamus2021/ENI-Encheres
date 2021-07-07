@@ -242,7 +242,10 @@ public class ArticleVendu {
 	 * @param categorieArticle
 	 */
 	public void setCategorieArticle(Categorie categorieArticle) {
-		this.categorieArticle = categorieArticle;
+		if(this.categorieArticle == null) {
+			this.categorieArticle = categorieArticle;
+			this.categorieArticle.addArticleVendu(this);
+		}
 	}
 
 	/**
@@ -307,9 +310,9 @@ public class ArticleVendu {
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
+				+ ", dateDebutEncheres=" + dateDebutEncheres.toString() + ", dateFinEncheres=" + dateFinEncheres.toString() + ", miseAPrix="
 				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur.getPrenom()
-				+ ", categorieArticle=" + categorieArticle.getLibelle() + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
+				+ ", categorieArticle=" + categorieArticle + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
 				+ listeEnchere.size() + "]"; // TODO
 	}
 
