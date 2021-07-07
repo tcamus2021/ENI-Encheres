@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class LogFilter
  */
-@WebFilter("/LogFilter")
+@WebFilter("/connexion")
 public class LogFilter implements Filter {
 
     /**
@@ -31,9 +31,7 @@ public class LogFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// place your code here
-
-		// pass the request along the filter chain
+		System.out.println("Filter");
 		chain.doFilter(request, response);
 	}
 

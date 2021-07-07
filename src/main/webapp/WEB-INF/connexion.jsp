@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Connexion</title>
 </head>
 <body>
-
+	<form method="post" action="accueil">
+		Identifiant:<input type="text">
+		Mot de passe:<input type="password">
+		<input type="submit">
+	</form>
 </body>
 </html>
