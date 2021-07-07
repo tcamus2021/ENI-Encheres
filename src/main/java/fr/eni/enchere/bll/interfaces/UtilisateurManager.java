@@ -65,6 +65,6 @@ public interface UtilisateurManager {
 	 * @return
 	 * @throws BLLexception
 	 */
-	public Utilisateur delete(Utilisateur utilisateur) throws BLLexception;
+	public void delete(Utilisateur utilisateur) throws BLLexception;
 
 }
