@@ -13,7 +13,7 @@
         <h1>ENI-Enchères</h1>
     </header>
     <main class="d-flex flex-wrap justify-content-center">
-        <form method="post" action="">
+        <form method="post" action="accueil">
             <div class="corps-connexion">
                 <div class="corps-connexion-infos col-12">
                     <label class="col-4" for="login-name" id="label-login-name">Identifiant:</label>
