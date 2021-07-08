@@ -59,7 +59,7 @@ public interface VenteManager {
 	 * 
 	 * @throws BLLexception
 	 */
-	public void encherir(Enchere enchere) throws BLLexception;
+	public void encherir(Utilisateur utilisateur, Integer montant, ArticleVendu articleVendu) throws BLLexception;
 
 	/**
 	 * Pour remporter une vente

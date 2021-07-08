@@ -1,6 +1,7 @@
 package fr.eni.enchere.ihm.controller;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,7 +13,7 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class LogFilter
  */
-@WebFilter("/LogFilter")
+@WebFilter("/*")
 public class LogFilter implements Filter {
 
     /**
@@ -31,10 +32,12 @@ public class LogFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// place your code here
-
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		System.out.println("Filter");
+		if(request.getParameter("login-name") != null) {
+			System.out.println("login");
+		} else {
+			chain.doFilter(request, response);
+		}
 	}
 
 	/**
