@@ -19,25 +19,25 @@ public interface DAOEniEnchere<T> {
 	 * 
 	 * @return
 	 */
-	public List<T> getAll();
+	public List<T> getAll() throws DALexception;
 	
 	/**
 	 * Pour récupérer un objet par son identifiant dans la base de données
 	 * @param id
 	 * @return
 	 */
-	public T getById(Integer id);
+	public T getById(Integer id) throws DALexception;
 
 	/**
 	 * Pour mettre à jour un objet dans la base de données
 	 * @param t
 	 */
-	public void update(T t);
+	public void update(T t) throws DALexception;
 
 	/**
 	 * Pour supprimer un objet par son identifiant dans la base de données
 	 * @param id
 	 */
-	public void delete(Integer id);
+	public void delete(Integer id) throws DALexception;
 
 }

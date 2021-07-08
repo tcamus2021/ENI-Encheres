@@ -31,20 +31,22 @@ public class TestDAL extends HttpServlet {
 		try {
 			System.out.println("_________________Test DAO Utilisateur____________________");
 
-			Utilisateur rene = new Utilisateur();
-			rene.setPseudo("Xx_Rene_Du_24XX");
-			rene.setNom("Mallard");
-			rene.setPrenom("René");
-			rene.setEmail("rene@mail.fr");
-			rene.setTelephone("0617513524");
-			rene.setRue("32 Rue des agenêts");
-			rene.setCodePostal(44000);
-			rene.setVille("Nantes");
-			rene.setMotDePasse("ReneLPB");
-			rene.setCredit(500);
-			rene.setAdministrateur(false);
-
-			DAOFactory.getDaoUtilisateurs().insert(rene);
+//			Utilisateur rene = new Utilisateur();
+//			rene.setPseudo("Xx_Rene_Du_24XX");
+//			rene.setNom("Mallard");
+//			rene.setPrenom("René");
+//			rene.setEmail("rene@mail.fr");
+//			rene.setTelephone("0617513524");
+//			rene.setRue("32 Rue des agenêts");
+//			rene.setCodePostal(44000);
+//			rene.setVille("Nantes");
+//			rene.setMotDePasse("ReneLPB");
+//			rene.setCredit(500);
+//			rene.setAdministrateur(false);
+//
+//			DAOFactory.getDaoUtilisateurs().insert(rene);
+			
+			System.out.println(DAOFactory.getDaoUtilisateurs().getAll());
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
