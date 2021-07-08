@@ -54,6 +54,6 @@ public class DAOFactory {
 	 * @return
 	 */
 	public static DAOEniEnchere<Utilisateur> getDaoUtilisateurs() {
-		return new MockUtilisateurs();
+		return MockUtilisateurs.getInstance();
 	}
 }

@@ -12,14 +12,26 @@ import fr.eni.enchere.dal.DAOEniEnchere;
  *
  */
 public class MockUtilisateurs implements DAOEniEnchere<Utilisateur>{
+	private static DAOEniEnchere<Utilisateur> instance;
+	private static int idCourant;
 	private List<Utilisateur>listeUtilisateurs = new ArrayList<>();
+	
+	public static DAOEniEnchere<Utilisateur> getInstance() {
+		if(instance == null) {
+			instance = new MockUtilisateurs();
+			idCourant = 1;
+		}
+		return instance;
+	}
 	
 	/**
 	 * Ajoute un utilisateur dans la liste
 	 */
 	@Override
 	public void insert(Utilisateur utilisateur) {
+		utilisateur.setNoUtilisateur(idCourant);
 		listeUtilisateurs.add(utilisateur);
+		idCourant++;
 	}
 
 	/**
@@ -46,8 +58,9 @@ public class MockUtilisateurs implements DAOEniEnchere<Utilisateur>{
 	 * Met à jour un utilisateur
 	 */
 	@Override
-	public void update(Utilisateur t) {
-		// TODO Auto-generated method stub	
+	public void update(Utilisateur utilisateur) {
+		this.delete(utilisateur.getNoUtilisateur());
+		this.listeUtilisateurs.add(utilisateur);
 	}
 
 	/**
@@ -55,6 +68,10 @@ public class MockUtilisateurs implements DAOEniEnchere<Utilisateur>{
 	 */
 	@Override
 	public void delete(Integer id) {
-		listeUtilisateurs.removeIf(c->c.getNoUtilisateur()==id);	
+		for (Utilisateur utilisateur : listeUtilisateurs) {
+			if(utilisateur.getNoUtilisateur() == id) {
+				this.listeUtilisateurs.remove(utilisateur);
+			}
+		}
 	}
 }

@@ -37,7 +37,7 @@ public interface UtilisateurManager {
 	 * @return
 	 * @throws BLLexception
 	 */
-	public Utilisateur getUtilisateurByPseudo() throws BLLexception;
+	public Utilisateur getUtilisateurByPseudo(String pseudo) throws BLLexception;
 
 	/**
 	 * Pour afficher tous les utilisateur
