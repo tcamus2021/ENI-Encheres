@@ -13,7 +13,7 @@ public interface DAOEniEnchere<T> {
 	 * Pour insérer un objet à la base de données 
 	 * 
 	 */
-	public void insert(T t);
+	public void insert(T t) throws DALexception;
 	
 	/** Pour récupérer tous les objets dans la base de données
 	 * 
