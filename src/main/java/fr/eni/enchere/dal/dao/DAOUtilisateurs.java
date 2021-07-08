@@ -64,6 +64,7 @@ public class DAOUtilisateurs implements DAOEniEnchere<Utilisateur> {
 				utilisateurCourant.setAdministrateur(resultat.getBoolean("administrateur"));
 				ret.add(utilisateurCourant);
 			}
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la récupération de la liste dans la BDD");
 		}
@@ -72,19 +73,66 @@ public class DAOUtilisateurs implements DAOEniEnchere<Utilisateur> {
 
 	@Override
 	public Utilisateur getById(Integer id) throws DALexception {
-		// TODO Auto-generated method stub
-		return null;
+		Utilisateur ret = new Utilisateur();
+		try(Connection connexion = JDBCtools.getConnection()){
+			PreparedStatement selectID = connexion.prepareStatement(getByIdCommande);
+			selectID.setInt(1, id);
+			ResultSet resultat = selectID.executeQuery();
+			while(resultat.next()) {
+				ret.setNoUtilisateur(resultat.getInt("no_utilisateur"));
+				ret.setPseudo(resultat.getString("pseudo"));
+				ret.setNom(resultat.getString("nom"));
+				ret.setPrenom(resultat.getString("prenom"));
+				ret.setEmail(resultat.getString("email"));
+				ret.setTelephone(resultat.getString("telephone"));
+				ret.setRue(resultat.getString("rue"));
+				ret.setCodePostal(Integer.parseInt(resultat.getString("code_postal")));
+				ret.setVille(resultat.getString("ville"));
+				ret.setMotDePasse(resultat.getString("mot_de_passe"));
+				ret.setCredit(resultat.getInt("credit"));
+				ret.setAdministrateur(resultat.getBoolean("administrateur"));
+			}
+			connexion.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALexception("Erreur à la récupération de l'utilisateur");
+		}
+		return ret;
 	}
 
 	@Override
-	public void update(Utilisateur t) throws DALexception {
-		// TODO Auto-generated method stub
-
+	public void update(Utilisateur utilisateur) throws DALexception {
+		try(Connection connexion = JDBCtools.getConnection()){
+			System.out.println(utilisateur);
+			PreparedStatement update = connexion.prepareStatement(updateCommande);
+			update.setString(1, utilisateur.getPseudo());
+			update.setString(2, utilisateur.getNom());
+			update.setString(3, utilisateur.getPrenom());
+			update.setString(4, utilisateur.getEmail());
+			update.setString(5, utilisateur.getTelephone());
+			update.setString(6, utilisateur.getRue());
+			update.setString(7, utilisateur.getCodePostal().toString());
+			update.setString(8, utilisateur.getVille());
+			update.setString(9, utilisateur.getMotDePasse());
+			update.setInt(10, utilisateur.getCredit());
+			update.setBoolean(11, utilisateur.getAdministrateur());
+			update.setInt(12, utilisateur.getNoUtilisateur());
+			update.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DALexception("Erreur lors de la mise à jour de l'update");
+		}
 	}
 
 	@Override
 	public void delete(Integer id) throws DALexception {
-		// TODO Auto-generated method stub
+		try(Connection connexion = JDBCtools.getConnection()){
+			PreparedStatement delete = connexion.prepareStatement(deleteCommande);
+			delete.setInt(1, id);
+			delete.executeUpdate();
+		} catch (Exception e) {
+			throw new DALexception("Erreur lors de la suppression");
+		}
 	}
 
 }
