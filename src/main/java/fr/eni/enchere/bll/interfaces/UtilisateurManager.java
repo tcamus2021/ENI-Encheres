@@ -11,12 +11,16 @@ import fr.eni.enchere.bo.Utilisateur;
  *
  */
 public interface UtilisateurManager {
+	
 	/**
-	 * Pour se connecter en tant qu'utilisateur
 	 * 
+	 * @param login
+	 * @param motDePasse
 	 * @throws BLLexception
 	 */
-	public void seConnecter() throws BLLexception;
+	
+	public void verifierInscription (String login, String motDePasse) throws BLLexception;
+	// hashcode
 
 	/**
 	 * Pour s'inscrire en tant que nouvel utilisateur
@@ -26,12 +30,6 @@ public interface UtilisateurManager {
 	 */
 	public void inscription(Utilisateur utilisateur) throws BLLexception;
 
-	/**
-	 * Pour se déconnecter
-	 * 
-	 * @throws BLLexception
-	 */
-	public void seDeconnecter() throws BLLexception;
 
 	/**
 	 * Pour afficher un profil d'utilisateur
@@ -56,7 +54,7 @@ public interface UtilisateurManager {
 	 * @return
 	 * @throws BLLexception
 	 */
-	public Utilisateur update(Utilisateur utilisateur) throws BLLexception;
+	public void update(Utilisateur utilisateur) throws BLLexception;
 
 	/**
 	 * Pour supprimer un utilsateur
