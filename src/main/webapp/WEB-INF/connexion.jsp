@@ -17,11 +17,11 @@
             <div class="corps-connexion">
                 <div class="corps-connexion-infos col-12">
                     <label class="col-4" for="login-name" id="label-login-name">Identifiant:</label>
-                    <input class="col-7" type="text" id="login-name">
+                    <input class="col-7" type="text" name="login-name">
                 </div>
                 <div class="corps-connexion-infos col-12">
                     <label class="col-4" for="login-password">Mot de passe:</label>
-                    <input class="col-7" type="password" id="login-password">
+                    <input class="col-7" type="password" name="login-password">
                 </div>
                 <div class="corps-connexion-options col-12 d-flex flex-nowrap">
                     <input class="col-4" type="submit" value="Connexion" id="submit-connexion">
