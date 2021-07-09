@@ -17,7 +17,7 @@ import fr.eni.enchere.bo.Utilisateur;
 /**
  * Servlet Filter implementation class LogFilter
  */
-@WebFilter("/connexion")
+@WebFilter({"/accueil", "/connexion", "/compte/creation"})
 public class LogFilter implements Filter {
 
 	/**
@@ -37,8 +37,10 @@ public class LogFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		// Si on veut se connecter
 		if (request.getParameter("login-name") != null) { // Cas de connexion
-			try {
+			
+			try { // Si informations de connexion correctes
 				BLLFactorySingl.createInstanceUtilisateur().verifierInscription(request.getParameter("login-name"),
 						request.getParameter("login-password"));
 
@@ -47,13 +49,12 @@ public class LogFilter implements Filter {
 				((HttpServletRequest) request).getSession().setAttribute("login", utilisateur);
 
 				chain.doFilter(request, response);
-			} catch (Exception e) {
+			} catch (Exception e) { // Si informations de connexion incorrectes 
 				request.setAttribute("erreur", e.getMessage());
 				request.getRequestDispatcher("/connexion").forward(request, response);
 			}
-		} else if (((HttpServletRequest) request).getSession().getAttribute("login") != null){
-			chain.doFilter(request, response);
-		} else {
+			
+		}  else {
 			chain.doFilter(request, response);
 		}
 	}
