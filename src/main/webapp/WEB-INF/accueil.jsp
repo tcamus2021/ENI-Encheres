@@ -21,12 +21,11 @@
               <div> <a href="vente" class="stretched-link">Vendre un article</a></div>
             </div>
             <div class="d-flex position-relative">
-              <div> <a href="compte-creation" class="stretched-link">Mon profil</a></div>
+              <div> <a href="compte" class="stretched-link">Mon profil</a></div>
             </div>
             <div class="d-flex position-relative">
-              <div> <a href="accueil" class="stretched-link">Déconnexion</a></div>
+              <div> <a href="accueil" class="stretched-link">Déconnexion</a></div> <!-- TODO -->
             </div>
-            <!--  -->
         </header>
         <main class="d-flex flex-wrap justify-content-center">
             <form>
