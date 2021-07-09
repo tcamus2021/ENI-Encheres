@@ -1,5 +1,7 @@
 package fr.eni.enchere.bll.implement;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 	@Override
 	public void inscription(Utilisateur utilisateur) throws BLLexception {
-		try { 
+		try {
 			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
 		} catch (Exception e) {
 			throw new BLLexception("Erreur à la récupération de tout les utilisateurs");
