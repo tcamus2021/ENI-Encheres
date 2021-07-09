@@ -1,12 +1,11 @@
 package fr.eni.enchere.bll.implement;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import fr.eni.enchere.bll.BLLexception;
-import fr.eni.enchere.bll.interfaces.UtilisateurManager;
-import fr.eni.enchere.bo.Utilisateur;
-import fr.eni.enchere.dal.DAOFactory;
+
+import src.main.java.fr.eni.enchere.bll.BLLexception;
+import src.main.java.fr.eni.enchere.bll.interfaces.UtilisateurManager;
+import src.main.java.fr.eni.enchere.bo.Utilisateur;
+import src.main.java.fr.eni.enchere.dal.DAOFactory;
 
 public class UtilisateurManagerImpl implements UtilisateurManager {
 	private List<Utilisateur> listeUtilisateurs = new ArrayList<>();
