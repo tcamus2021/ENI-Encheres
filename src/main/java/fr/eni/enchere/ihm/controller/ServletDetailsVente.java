@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletDetailsVent
  */
-@WebServlet("/details_vente")
-public class ServletDetailsVent extends HttpServlet {
+public class ServletDetailsVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletDetailsVent() {
+    public ServletDetailsVente() {
         super();
     }
 
@@ -25,7 +24,7 @@ public class ServletDetailsVent extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Détails vente");
 	}
 
 	/**
