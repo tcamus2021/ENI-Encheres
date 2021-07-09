@@ -24,7 +24,7 @@
               <div> <a href="compte" class="stretched-link">Mon profil</a></div>
             </div>
             <div class="d-flex position-relative">
-              <div> <a href="accueil" class="stretched-link">Déconnexion</a></div> <!-- TODO -->
+	              <a href="accueil?deconnexion=true" type="hidden">Déconnexion</a>
             </div>
         </header>
         <main class="d-flex flex-wrap justify-content-center">
