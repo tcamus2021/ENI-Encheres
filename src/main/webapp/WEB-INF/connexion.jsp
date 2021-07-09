@@ -34,10 +34,12 @@
                     </div>
                 </div>
                 <div class="corps-connexion">
-                    <button class="btn-creation-compte col-12">Créer un compte</button>
+        </form>
+                	<form method="post" action="compte/creation">
+                    	<input type="submit" class="btn-creation-compte col-12" value="Créer un compte">
+                    </form>
                 </div>
             </div>
-        </form>
     </main>
 </body>
 </html>
