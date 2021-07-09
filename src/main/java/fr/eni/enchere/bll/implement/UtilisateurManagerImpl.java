@@ -1,7 +1,5 @@
 package fr.eni.enchere.bll.implement;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +88,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
 			testUtilisateur(utilisateur);
 			for (Utilisateur utilisateurForEach : listeUtilisateurs) {
-				if(utilisateurForEach.getPseudo().equals(utilisateur.getPseudo())) {
+				if (utilisateurForEach.getPseudo().equals(utilisateur.getPseudo())) {
 					DAOFactory.getDaoUtilisateurs().delete(utilisateurForEach.getNoUtilisateur());
 				}
 			}
@@ -99,6 +97,12 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 	}
 
+	/**
+	 * Pour savoir si un utilisateur est conforme au niveau des données
+	 * 
+	 * @param utilisateur
+	 * @throws BLLexception
+	 */
 	public void testUtilisateur(Utilisateur utilisateur) throws BLLexception {
 		if (utilisateur.getPseudo() == null) {
 			throw new BLLexception("Erreur, veuillez rentrer un pseudo");
@@ -128,7 +132,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			throw new BLLexception("Erreur, veuillez rentrer un mot de passet");
 		}
 		if (utilisateur.getAdministrateur() == null) {
-			throw new BLLexception("Erreur,administrateur manquant");
+			throw new BLLexception("Erreur, administrateur manquant");
 		}
 		String testCaractereSpeciaux = utilisateur.getPseudo().replaceAll("[^A-Za-z0-9]", "");
 		if (!testCaractereSpeciaux.equals(utilisateur.getPseudo())) {

@@ -37,7 +37,7 @@ public class ConnecterFilter implements Filter {
 		if(((HttpServletRequest)request).getSession().getAttribute("login") == null) {
 			chain.doFilter(request, response);
 		} else {
-			request.getRequestDispatcher("/accueil").forward(request, response);;
+			request.getRequestDispatcher("/accueil").forward(request, response);
 		}
 	}
 

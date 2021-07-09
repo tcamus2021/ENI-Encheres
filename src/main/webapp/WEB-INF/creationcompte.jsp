@@ -81,11 +81,13 @@
 		          <div style="margin-top:1em">
 		            <input type="submit" class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded" value="Créer">
 		          </div>
-		          <div style="margin-top:1em">
-		            <button class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded "> Annuler </button> 
-		          </div>
-	          </div>
 	        </form>
+		          <div style="margin-top:1em">
+		          <form method="post" action="accueil">
+		            <input type="submit" class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded " value="Annuler">
+		          </div>
+		          </form>
+	          </div>
 		</main>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

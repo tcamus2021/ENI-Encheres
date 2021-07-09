@@ -30,7 +30,7 @@ public class ServletCreationCompte extends HttpServlet {
 			throws ServletException, IOException {
 		if (request.getParameter("create-pseudo") != null) {
 			if (!request.getParameter("create-motDePasse").equals(request.getParameter("create-motDePasse-verif"))) {
-				request.setAttribute("erreur", "Mot de passe incorect");
+				request.setAttribute("erreur", "Mot de passe incorrect");
 				request.getRequestDispatcher("/WEB-INF/creationcompte.jsp").forward(request, response);
 			} else {
 				try {
