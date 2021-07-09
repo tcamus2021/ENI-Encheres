@@ -62,8 +62,7 @@
             <div class="form-group">
             <div style="margin-top:1em">
             <label class="col-4 control-label" for="profile-password"> Mot de passe : </label>
-             <input class="col-7" id="password-field" type="password" class="form-control" name="password" value="">
-             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+             <input class="col-7" id="profile-password">
             </div>
 
           <div class="corps-connexion-infos col-12r">
