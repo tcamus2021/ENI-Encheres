@@ -35,7 +35,7 @@
                 </div>
                 <div class="corps-connexion">
         </form>
-                	<form method="post" action="compte/creation">
+                	<form method="post" action="compte-creation">
                     	<input type="submit" class="btn-creation-compte col-12" value="Créer un compte">
                     </form>
                 </div>

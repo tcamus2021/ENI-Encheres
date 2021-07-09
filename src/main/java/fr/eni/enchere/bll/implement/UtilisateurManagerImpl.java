@@ -131,7 +131,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			throw new BLLexception("Erreur,administrateur manquant");
 		}
 		String testCaractereSpeciaux = utilisateur.getPseudo().replaceAll("[^A-Za-z0-9]", "");
-		if (testCaractereSpeciaux.equals(utilisateur.getPseudo())) {
+		if (!testCaractereSpeciaux.equals(utilisateur.getPseudo())) {
 			throw new BLLexception("Uniquement les caractères alphanumérique");
 		}
 	}
