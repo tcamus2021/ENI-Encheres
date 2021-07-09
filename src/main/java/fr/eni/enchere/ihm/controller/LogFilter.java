@@ -17,7 +17,7 @@ import fr.eni.enchere.bo.Utilisateur;
 /**
  * Servlet Filter implementation class LogFilter
  */
-@WebFilter({"/accueil", "/connexion", "/compte/creation"})
+@WebFilter({"/accueil", "/connexion"})
 public class LogFilter implements Filter {
 
 	/**

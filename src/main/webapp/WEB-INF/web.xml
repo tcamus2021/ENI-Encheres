@@ -39,7 +39,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletCreationCompte</servlet-name>
-		<url-pattern>/compte/creation</url-pattern>
+		<url-pattern>/compte-creation</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -59,7 +59,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletFinDeVente</servlet-name>
-		<url-pattern>/vente/fini</url-pattern>
+		<url-pattern>/vente-fini</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -69,7 +69,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletModification</servlet-name>
-		<url-pattern>/compte/modification</url-pattern>
+		<url-pattern>/compte-modification</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -79,7 +79,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletNouvelleVente</servlet-name>
-		<url-pattern>/vente/creation</url-pattern>
+		<url-pattern>/vente-creation</url-pattern>
 	</servlet-mapping>
 	
 	

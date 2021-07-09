@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,7 @@
     <header class="offset-1 col-11">
         <h1>ENI-Enchères</h1>
     </header>
+    <div class="col-12 d-flex flex-wrap justify-content-center">${ erreur }</div>
     <main class="d-flex flex-wrap justify-content-center">
         <form method="post" action="accueil">
             <div class="corps-connexion">
@@ -35,7 +38,7 @@
                 </div>
                 <div class="corps-connexion">
         </form>
-                	<form method="post" action="compte/creation">
+                	<form method="post" action="compte-creation">
                     	<input type="submit" class="btn-creation-compte col-12" value="Créer un compte">
                     </form>
                 </div>
