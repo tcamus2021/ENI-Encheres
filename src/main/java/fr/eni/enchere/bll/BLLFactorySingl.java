@@ -1,9 +1,9 @@
 package fr.eni.enchere.bll;
 
-import fr.eni.enchere.bll.implement.UtilisateurManagerImpl;
 import fr.eni.enchere.bll.implement.VenteManagerImpl;
 import fr.eni.enchere.bll.interfaces.UtilisateurManager;
 import fr.eni.enchere.bll.interfaces.VenteManager;
+import fr.eni.enchere.bll.implement.UtilisateurManagerImpl;
 
 public class BLLFactorySingl {
 	private static UtilisateurManager instanceUtilisateur;
