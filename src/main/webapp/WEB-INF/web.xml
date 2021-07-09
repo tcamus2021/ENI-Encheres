@@ -1,4 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<welcome-file-list>
-	<welcome-file>accueil.jsp</welcome-file>
-</welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>ENI-Encheres</display-name>
+	<welcome-file-list>
+		<welcome-file>accueil.jsp</welcome-file>
+	</welcome-file-list>
+
+	
+	<servlet>
+		<servlet-name>ServletAccueil</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletAccueil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletAccueil</servlet-name>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletConnexion</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletConnexion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletConnexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletCreationCompte</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletCreationCompte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletCreationCompte</servlet-name>
+		<url-pattern>/compte/creation</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletDetailsVente</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletDetailsVente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletDetailsVente</servlet-name>
+		<url-pattern>/vente</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletFinDeVente</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletFinDeVente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletFinDeVente</servlet-name>
+		<url-pattern>/vente/fini</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletModification</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletModification</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletModification</servlet-name>
+		<url-pattern>/compte/modification</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletNouvelleVente</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletNouvelleVente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletNouvelleVente</servlet-name>
+		<url-pattern>/vente/creation</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ServletProfil</servlet-name>
+		<servlet-class>fr.eni.enchere.ihm.controller.ServletProfil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletProfil</servlet-name>
+		<url-pattern>/compte</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -17,7 +17,7 @@ import fr.eni.enchere.bo.Utilisateur;
 /**
  * Servlet Filter implementation class LogFilter
  */
-@WebFilter("/*")
+@WebFilter("/connexion")
 public class LogFilter implements Filter {
 
 	/**
@@ -49,8 +49,10 @@ public class LogFilter implements Filter {
 				chain.doFilter(request, response);
 			} catch (Exception e) {
 				request.setAttribute("erreur", e.getMessage());
-				request.getRequestDispatcher("/connexion"); // FIXME
+				request.getRequestDispatcher("/connexion").forward(request, response);
 			}
+		} else if (((HttpServletRequest) request).getSession().getAttribute("login") != null){
+			chain.doFilter(request, response);
 		} else {
 			chain.doFilter(request, response);
 		}
