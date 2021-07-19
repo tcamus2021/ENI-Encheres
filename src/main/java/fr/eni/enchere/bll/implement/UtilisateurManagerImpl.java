@@ -49,7 +49,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
 			for (Utilisateur utilisateurForEach : listeUtilisateurs) {
-				if (utilisateurForEach.getPseudo().equals(pseudo)) {
+				if (utilisateurForEach.getPseudo().equals(pseudo) || utilisateurForEach.getEmail().equals(pseudo)) {
 					ret = utilisateurForEach;
 				}
 			}

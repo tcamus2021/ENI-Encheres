@@ -43,11 +43,9 @@ public class LogFilter implements Filter {
 			try { // Si informations de connexion correctes
 				BLLFactorySingl.createInstanceUtilisateur().verifierInscription(request.getParameter("login-name"),
 						request.getParameter("login-password"));
-
 				Utilisateur utilisateur = BLLFactorySingl.createInstanceUtilisateur()
 						.getUtilisateurByPseudo(request.getParameter("login-name"));
 				((HttpServletRequest) request).getSession().setAttribute("login", utilisateur);
-
 				chain.doFilter(request, response);
 			} catch (Exception e) { // Si informations de connexion incorrectes 
 				request.setAttribute("erreur", e.getMessage());

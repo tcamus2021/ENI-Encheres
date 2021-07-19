@@ -1,6 +1,8 @@
 package fr.eni.enchere.ihm.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,21 @@ public class ServletProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Compte");
+		RequestDispatcher nextPage = null;
+		if(request.getAttribute("user") == null) { // TODO Attribut pour gérer si c'est notre profil ou non
+			if(request.getSession().getAttribute("login") != null) {
+				request.setAttribute("utilisateurVoulu", request.getSession().getAttribute("login"));
+				request.setAttribute("monProfil", true);
+				nextPage = request.getRequestDispatcher("WEB-INF/profil.jsp");
+			} else {
+				nextPage = request.getRequestDispatcher("WEB-INF/accueil.jsp");
+			}
+		} else { // Cas où ce n'est pas notre profil
+			request.setAttribute("monProfil", false);
+			request.setAttribute("utilisateurVoulu", request.getAttribute("user"));
+			nextPage = request.getRequestDispatcher("WEB-INF/profil.jsp");
+		}
+		nextPage.forward(request, response);
 	}
 
 	/**
