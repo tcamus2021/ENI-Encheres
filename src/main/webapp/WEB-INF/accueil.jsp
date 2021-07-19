@@ -13,7 +13,7 @@
     </head>
     <body>
         <header class="offset-2 col-10">
-            <h1>ENI-Enchères</h1>
+            <a href="" style="color: black; text-decoration: none;"><h1>ENI-Enchères</h1></a>
             <c:if test="${login.nom == null }">
             <div class="d-flex position-relative">
               <div> <a href="connexion" class="stretched-link">S'inscrire - Se connecter</a></div>

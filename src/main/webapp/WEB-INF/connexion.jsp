@@ -12,7 +12,7 @@
 </head>
 <body>
     <header class="offset-1 col-11">
-        <h1>ENI-Enchères</h1>
+        <a href="accueil" style="color: black; text-decoration: none;"><h1>ENI-Enchères</h1></a>
     </header>
     <div class="col-12 d-flex flex-wrap justify-content-center">${ erreur }</div>
     <main class="d-flex flex-wrap justify-content-center">

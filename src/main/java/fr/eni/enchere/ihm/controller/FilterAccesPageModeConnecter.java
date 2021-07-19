@@ -11,41 +11,40 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Servlet Filter implementation class ConnecterFilter
+ * Servlet Filter implementation class FilterAccesPageModeConnecter
  */
-@WebFilter({"/compte-creation", "/connexion"})
-public class ConnecterFilter implements Filter {
+@WebFilter({ "/compte-modification", "/vente-creation", "/vente" })
+public class FilterAccesPageModeConnecter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public ConnecterFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public FilterAccesPageModeConnecter() {
+	}
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		if(((HttpServletRequest)request).getSession().getAttribute("login") == null) {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		if (((HttpServletRequest) request).getSession().getAttribute("login") != null) {
 			chain.doFilter(request, response);
 		} else {
 			request.getRequestDispatcher("/accueil").forward(request, response);
 		}
+
 	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }
