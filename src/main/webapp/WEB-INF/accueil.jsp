@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,11 +14,15 @@
     <body>
         <header class="offset-2 col-10">
             <h1>ENI-Enchères</h1>
+            <c:if test="${login.nom == null }">
             <div class="d-flex position-relative">
               <div> <a href="connexion" class="stretched-link">S'inscrire - Se connecter</a></div>
             </div>
-
-            <!-- Si l'utilisateur est connecté -->
+            </c:if>
+			<c:if test="${login.nom != null }">
+            <div class="d-flex position-relative">
+              <div> <a href="vente" class="stretched-link">Enchères</a></div>
+            </div>
             <div class="d-flex position-relative">
               <div> <a href="vente" class="stretched-link">Vendre un article</a></div>
             </div>
@@ -26,6 +32,7 @@
             <div class="d-flex position-relative">
 	              <a href="accueil?deconnexion=true" type="hidden">Déconnexion</a>
             </div>
+            </c:if>
         </header>
         <main class="d-flex flex-wrap justify-content-center">
             <form>
@@ -51,28 +58,29 @@
                   </section>   
             </form> 
 
-            <!-- Si l'utilisateur est connecté -->
+           
+			<c:if test="${login.nom != null }">
           <div class="form-check">
             <div style="margin-top:1em">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <input class="form-check-input" type="radio" name="radio-groupe" id="radio-achats" onclick="griserBtn()">
             <label class="form-check-label" for="flexRadioDefault2">
               Achats
             </label>
           </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <input class="form-check-input" type="checkbox" value="" id="achat-checkbox1" name="achat-checkbox" disabled="disabled">
               <label class="form-check-label" for="flexCheckDefault">
                 Enchères ouvertes
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+              <input class="form-check-input" type="checkbox" value="" id="achat-checkbox2" name="achat-checkbox" disabled="disabled">
               <label class="form-check-label" for="flexCheckChecked">
                 Mes enchères 
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+              <input class="form-check-input" type="checkbox" value="" id="achat-checkbox3" name="achat-checkbox" disabled="disabled">
               <label class="form-check-label" for="flexCheckChecked">
                 Mes enchères emportées 
               </label>
@@ -82,31 +90,32 @@
           <div>
             <div class="form-check">
               <div style="margin-top:1em">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <input class="form-check-input" type="radio" name="radio-groupe" id="radio-ventes" onclick="griserBtn()">
                 <label class="form-check-label" for="flexRadioDefault2">
                 Mes ventes
               </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="ventes-checkbox1" disabled="disabled">
                 <label class="form-check-label" for="flexCheckDefault">
                   Mes ventes en cours
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="ventes-checkbox2" disabled="disabled">
                 <label class="form-check-label" for="flexCheckChecked">
                   Ventes non débutées 
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="ventes-checkbox3" disabled="disabled">
                 <label class="form-check-label" for="flexCheckChecked">
                   Ventes terminées 
                 </label>
               </div>
              </div>
           </div>
+          </c:if>
               <!--  -->
       <section>
         <div class="card mb-3" >
@@ -145,5 +154,34 @@
       </section>   
 </main>
     </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+		function griserBtn(){
+	        if(document.getElementById('radio-achats').checked) {
+	            document.getElementById('achat-checkbox1').disabled = "";
+	            document.getElementById('achat-checkbox2').disabled = "";
+	            document.getElementById('achat-checkbox3').disabled = "";
+	        } 
+	        else{
+	            document.getElementById('achat-checkbox1').disabled = "disabled";
+	            document.getElementById('achat-checkbox2').disabled = "disabled";
+	            document.getElementById('achat-checkbox3').disabled = "disabled";
+	            document.getElementById('achat-checkbox1').checked = "";
+	            document.getElementById('achat-checkbox2').checked = "";
+	            document.getElementById('achat-checkbox3').checked = "";
+	        }
+	        if(document.getElementById('radio-ventes').checked) {
+	            document.getElementById('ventes-checkbox1').disabled = "";
+	            document.getElementById('ventes-checkbox2').disabled = "";
+	            document.getElementById('ventes-checkbox3').disabled = "";
+	        } 
+	        else{
+	            document.getElementById('ventes-checkbox1').disabled = "disabled";
+	            document.getElementById('ventes-checkbox2').disabled = "disabled";
+	            document.getElementById('ventes-checkbox3').disabled = "disabled";
+	            document.getElementById('ventes-checkbox1').checked = "";
+	            document.getElementById('ventes-checkbox2').checked = "";
+	            document.getElementById('ventes-checkbox3').checked = "";
+	        }
+	    }
+	</script>
 </html>
