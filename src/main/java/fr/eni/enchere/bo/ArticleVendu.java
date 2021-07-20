@@ -331,10 +331,10 @@ public class ArticleVendu {
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEncheres=" + dateDebutEncheres.toString() + ", dateFinEncheres="
+				/*+ ", dateDebutEncheres=" + dateDebutEncheres.toString() + ", dateFinEncheres="
 				+ dateFinEncheres.toString() + ", miseAPrix=" + miseAPrix + ", prixVente=" + prixVente + ", etatVente="
 				+ etatVente + ", utilisateur=" + utilisateur.getPrenom() + ", categorieArticle=" + categorieArticle
-				+ ", lieuRetrait=" + lieuRetrait + ", listeEnchere=" + listeEnchere.size() + "]"; // TODO
+				+ ", lieuRetrait=" + lieuRetrait + ", listeEnchere=" + listeEnchere.size() + "]"*/; // TODO
 	}
 
 }
