@@ -5,6 +5,7 @@ import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Retrait;
 import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.dal.dao.DAOArticlesVendus;
 import fr.eni.enchere.dal.dao.DAOUtilisateurs;
 import fr.eni.enchere.dal.mock.MockArticlesVendus;
 import fr.eni.enchere.dal.mock.MockCategories;
@@ -23,7 +24,7 @@ public class DAOFactory {
 	 * @return
 	 */
 	public static DAOEniEnchere<ArticleVendu> getDaoArticlesVendus() {
-		return new MockArticlesVendus();
+		return new DAOArticlesVendus();
 	}
 	
 	/**
