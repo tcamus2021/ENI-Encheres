@@ -14,6 +14,7 @@
         <header class="offset-2 col-10">
             <a href="accueil" style="color: black; text-decoration: none;"><h1>ENI-Enchères</h1></a>
         </header>
+    <div class="col-12 d-flex flex-wrap justify-content-center">${ erreur }</div>
         <main class="d-flex flex-wrap justify-content-center">
             <form method="post" action="compte-modification">
                 <div class="d-flex flex-wrap justify-content-center"> <h1>${utilisateurVoulu.pseudo }</h1>

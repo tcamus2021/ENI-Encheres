@@ -104,31 +104,31 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	 * @throws BLLexception
 	 */
 	public void testUtilisateur(Utilisateur utilisateur) throws BLLexception {
-		if (utilisateur.getPseudo() == null) {
+		if (utilisateur.getPseudo() == null || utilisateur.getPseudo().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer un pseudo");
 		}
-		if (utilisateur.getNom() == null) {
+		if (utilisateur.getNom() == null || utilisateur.getNom().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer un nom");
 		}
-		if (utilisateur.getPrenom() == null) {
+		if (utilisateur.getPrenom() == null || utilisateur.getPrenom().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer un prénom");
 		}
-		if (utilisateur.getEmail() == null) {
+		if (utilisateur.getEmail() == null || utilisateur.getEmail().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer un email");
 		}
-		if (utilisateur.getTelephone() == null) {
+		if (utilisateur.getTelephone() == null || utilisateur.getTelephone().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer un numéro de téléphone");
 		}
-		if (utilisateur.getRue() == null) {
+		if (utilisateur.getRue() == null || utilisateur.getRue().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer une rue");
 		}
-		if (utilisateur.getCodePostal() == null) {
+		if (utilisateur.getCodePostal() == null || utilisateur.getCodePostal() == 0) {
 			throw new BLLexception("Erreur, veuillez rentrer un code postal");
 		}
-		if (utilisateur.getVille() == null) {
+		if (utilisateur.getVille() == null || utilisateur.getVille().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer une ville");
 		}
-		if (utilisateur.getMotDePasse() == null) {
+		if (utilisateur.getMotDePasse() == null || utilisateur.getMotDePasse().equals("")) {
 			throw new BLLexception("Erreur, veuillez rentrer un mot de passet");
 		}
 		if (utilisateur.getAdministrateur() == null) {
@@ -148,9 +148,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		} catch (Exception e) {
 			throw new BLLexception(e.getMessage());
 		}
-
+		
 		Utilisateur utilisateurCourant = new Utilisateur();
-		for (Utilisateur utilisateurForEach : listeUtilisateurs) {
+		for (Utilisateur utilisateurForEach : this.listeUtilisateurs) {
 			if (utilisateurForEach.getPseudo().equals(login)) {
 				utilisateurCourant = utilisateurForEach;
 			}
@@ -164,7 +164,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 
 		Integer motDePasseChiffrer = motDePasse.hashCode();
-
 		if (!motDePasseChiffrer.toString().equals(utilisateurCourant.getMotDePasse())) {
 			throw new BLLexception("Mot de passe incorectes");
 		}

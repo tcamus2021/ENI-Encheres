@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.BLLFactorySingl;
+import fr.eni.enchere.bll.BLLexception;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -54,8 +55,11 @@ public class ServletCreationCompte extends HttpServlet {
 					((HttpServletRequest) request).getSession().setAttribute("login", utilisateurAvecId);
 
 					request.getRequestDispatcher("/accueil").forward(request, response);
-				} catch (Exception e) {
+				} catch (BLLexception e) {
 					request.setAttribute("erreur", e.getMessage());
+					request.getRequestDispatcher("/WEB-INF/creationcompte.jsp").forward(request, response);
+				} catch (Exception e) {
+					request.setAttribute("erreur", "Veuillez vérifier vos champs");
 					request.getRequestDispatcher("/WEB-INF/creationcompte.jsp").forward(request, response);
 				}
 			}

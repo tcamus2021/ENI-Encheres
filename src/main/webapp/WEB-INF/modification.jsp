@@ -22,6 +22,7 @@
 	<header class="offset-2 col-10">
 		<a href="accueil" style="color: black; text-decoration: none;"><h1>ENI-Enchères</h1></a>
 	</header>
+    <div class="col-12 d-flex flex-wrap justify-content-center">${ erreur }</div>
 	<main class="d-flex flex-wrap justify-content-center">
 		<form method="post" action="compte">
 			<div class="d-flex flex-wrap justify-content-center">
@@ -31,69 +32,69 @@
 			<!-- Modification du pseudo -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-pseudo"> Pseudo :
-				</label> <input class="col-7" id="edit-pseudo" value="${login.pseudo }">
+				</label> <input class="col-7" id="edit-pseudo" name="modification-pseudo" value="${login.pseudo }">
 			</div>
 
 			<!-- Modification du nom -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-name"> Nom : </label> <input
-					class="col-7" id="edit-name" value="${login.nom }">
+					class="col-7" id="edit-name" name="modification-nom" value="${login.nom }">
 			</div>
 
 			<!-- Modification du prénom -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-first-name">
-					Prénom : </label> <input class="col-7" id="edit-first-name" value="${login.prenom }">
+					Prénom : </label> <input class="col-7" id="edit-first-name" name="modification-prenom" value="${login.prenom }">
 			</div>
 
 			<!-- Modification de l'email -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-email"> Email : </label>
-				<input class="col-7" id="edit-email" value="${login.email }">
+				<input class="col-7" id="edit-email" name="modification-email" value="${login.email }">
 			</div>
 
 			<!-- Modification du numéro de téléphone -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-telephone">
-					Téléphone : </label> <input class="col-7" id="profile-telephone" type="tel" value="${login.telephone }">
+					Téléphone : </label> <input class="col-7" id="profile-telephone" type="number" name="modification-telephone" value="${login.telephone }">
 			</div>
 
 			<!-- Modification de la rue -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="profile-street"> Rue :
-				</label> <input class="col-7" id="edit-street" value="${login.rue }">
+				</label> <input class="col-7" id="edit-street" name="modification-rue" value="${login.rue }">
 			</div>
 
 			<!-- Modification du code postal -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-zip-code">Code
-					postal : </label> <input class="col-7" id="edit-zip-code" type="number" value="${login.codePostal }">
+					postal : </label> <input class="col-7" id="edit-zip-code" type="number" name="modification-code-postal" value="${login.codePostal }">
 			</div>
 
 			<!-- Modification de la ville-->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-city"> Ville : </label> <input
-					class="col-7" id="edit-city" value="${login.ville }">
+					class="col-7" id="edit-city" name="modification-ville" value="${login.ville }">
 			</div>
 
 			<!-- Modification du mot de passe -->
 			<div style="margin-top: 1em">
 				<label class="col-4 control-label" type="text" for="edit-password">
-					Mot de passe actuel : </label> <input class="col-7" id="edit-password" type="password">
+					Mot de passe actuel : </label> <input class="col-7" id="edit-password" name="modification-password-actuel" type="password">
 			</div>
 
 			<!-- Nouveau mot de passe-->
 			<div style="margin-top: 1em">
 				<label class="col-4 control-label" type="text"
 					for="edit-new-password"> Nouveau mot de passe : </label> <input
-					class="col-7" id="edit-new--password" type="password">
+					class="col-7" id="edit-new--password" name="modification-password-nouveau" type="password">
 			</div>
 
 			<!-- Confirmation nouveau mot de passe -->
 			<div style="margin-top: 1em">
 				<label class="col-4" type="text" for="edit-confirmation">
 					Confirmation : </label> 
-					<input class="col-7" id="edit-confirmation" type="password">
+					<input class="col-7" id="edit-confirmation" name="modification-password-confirmation" type="password">
 			</div>
 				<br>
 				<!-- Récupérer le crédit de l'utilisateur dans value  -->

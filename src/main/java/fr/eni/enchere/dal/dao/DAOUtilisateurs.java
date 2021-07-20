@@ -103,7 +103,6 @@ public class DAOUtilisateurs implements DAOEniEnchere<Utilisateur> {
 	@Override
 	public void update(Utilisateur utilisateur) throws DALexception {
 		try(Connection connexion = JDBCtools.getConnection()){
-			System.out.println(utilisateur);
 			PreparedStatement update = connexion.prepareStatement(updateCommande);
 			update.setString(1, utilisateur.getPseudo());
 			update.setString(2, utilisateur.getNom());
