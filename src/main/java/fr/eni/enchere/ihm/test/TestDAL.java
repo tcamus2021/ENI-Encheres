@@ -90,6 +90,7 @@ public class TestDAL extends HttpServlet {
 			vetement.setLibelle("Vêtement");
 //			
 			ArticleVendu polo = new ArticleVendu();
+			polo.setNoArticle(2); //ICI
 			polo.setNomArticle("Polo Blanc");
 			polo.setDescription("Couleur Blanche");
 			polo.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
@@ -106,14 +107,12 @@ public class TestDAL extends HttpServlet {
 //			
 //			System.out.println(DAOFactory.getDaoArticlesVendus().getById(1));
 			
-			DAOFactory.getDaoArticlesVendus().update(polo);
+//			DAOFactory.getDaoArticlesVendus().update(polo);
+			
+			DAOFactory.getDaoArticlesVendus().delete(2);
 
-			System.out.println(DAOFactory.getDaoUtilisateurs().getAll());
 			
-			Utilisateur rene2 = DAOFactory.getDaoUtilisateurs().getById(1);
-			rene2.setMotDePasse(((Integer) "NouveauMDP".hashCode()).toString());
 			
-			DAOFactory.getDaoUtilisateurs().update(rene2);
 			
 			
 //			System.out.println("_________________Test DAO Encheres____________________");

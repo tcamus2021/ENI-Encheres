@@ -15,9 +15,9 @@ import fr.eni.enchere.dal.connexion.JDBCtools;
 public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 	private String insertCommande = "INSERT INTO ARTICLES_VENDUS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	private String getAllCommande = "SELECT * FROM ARTICLES_VENDUS;";
-	private String updateCommande = "UPDATE ARTICLES_VENDUS SET " + "nom_article = '?', " + "description='?', "
-			+ "date_debut_encheres='?', " + "date_fin_encheres='?', " + "prix_initial= ?, prix_vente= ?, "
-			+ "no_utilisateur = ?, " + "no_categorie = ?, " + "lien_image = '?' " + "WHERE no_article = ?;";
+	private String updateCommande = "UPDATE ARTICLES_VENDUS SET " + "nom_article = ?, " + "description = ?, "
+			+ "date_debut_encheres = ?, " + "date_fin_encheres = ?, " + "prix_initial = ?, prix_vente = ?, "
+			+ "no_utilisateur = ?, " + "no_categorie = ?, " + "lien_image = ? " + "WHERE no_article = ?;";
 	private String deleteCommande = "DELETE FROM ARTICLES_VENDUS WHERE no_article = ?;";
 
 	@Override
@@ -120,7 +120,9 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 	@Override
 	public void delete(Integer id) throws DALexception {
 		try (Connection connexion = JDBCtools.getConnection()) {
-			
+			PreparedStatement delete = connexion.prepareStatement(deleteCommande);
+			delete.setInt(1, id);
+			delete.executeUpdate();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la supression");
 		}
