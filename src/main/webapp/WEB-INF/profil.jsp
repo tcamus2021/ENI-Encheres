@@ -15,7 +15,7 @@
             <a href="accueil" style="color: black; text-decoration: none;"><h1>ENI-Enchères</h1></a>
         </header>
         <main class="d-flex flex-wrap justify-content-center">
-            <form>
+            <form method="post" action="compte-modification">
                 <div class="d-flex flex-wrap justify-content-center"> <h1>${utilisateurVoulu.pseudo }</h1>
                 </div>
                 <div class="corps-connexion-infos col-12">
@@ -69,9 +69,10 @@
                  
           <c:if test="${monProfil == true }">       
           <div class="d-flex flex-wrap justify-content-center">
-            <div style="margin-top:1em">
-            <button class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded "> Modifier</button> 
-          </div>
+	          <div style="margin-top:1em">
+	            	<input type="submit" class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded"
+	            	value="Modifier">
+	          </div>
           </c:if>
         </form>
 </main>
