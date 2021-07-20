@@ -18,6 +18,7 @@ public class ArticleVendu {
 	private Integer miseAPrix;
 	private Integer prixVente;
 	private String etatVente;
+	private String lienImage;
 	private Utilisateur utilisateur;
 	private Categorie categorieArticle;
 	private Retrait lieuRetrait;
@@ -38,10 +39,11 @@ public class ArticleVendu {
 	 * @param categorieArticle
 	 * @param lieuRetrait
 	 * @param listeEnchere
+	 * @param lien
 	 */
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Utilisateur utilisateur,
-			Categorie categorieArticle, Retrait lieuRetrait, List<Enchere> listeEnchere) {
+			Categorie categorieArticle, Retrait lieuRetrait, List<Enchere> listeEnchere, String lien) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -54,6 +56,7 @@ public class ArticleVendu {
 		this.categorieArticle = categorieArticle;
 		this.lieuRetrait = lieuRetrait;
 		this.listeEnchere = listeEnchere;
+		this.lienImage = lien;
 	}
 
 	/**
@@ -242,7 +245,7 @@ public class ArticleVendu {
 	 * @param categorieArticle
 	 */
 	public void setCategorieArticle(Categorie categorieArticle) {
-		if(this.categorieArticle == null) {
+		if (this.categorieArticle == null) {
 			this.categorieArticle = categorieArticle;
 			this.categorieArticle.addArticleVendu(this);
 		}
@@ -263,7 +266,7 @@ public class ArticleVendu {
 	 * @param lieuRetrait
 	 */
 	public void setLieuRetrait(Retrait lieuRetrait) {
-		if(this.lieuRetrait == null) {
+		if (this.lieuRetrait == null) {
 			this.lieuRetrait = lieuRetrait;
 			this.lieuRetrait.setArticle(this);
 		}
@@ -285,6 +288,24 @@ public class ArticleVendu {
 	 */
 	public void setListeEnchere(List<Enchere> listeEnchere) {
 		this.listeEnchere = listeEnchere;
+	}
+
+	/**
+	 * Getter lien de l'image
+	 * 
+	 * @return
+	 */
+	public String getLienImage() {
+		return lienImage;
+	}
+
+	/**
+	 * Setter lien de l'image
+	 * 
+	 * @param lienImage
+	 */
+	public void setLienImage(String lienImage) {
+		this.lienImage = lienImage;
 	}
 
 	/**
@@ -310,10 +331,10 @@ public class ArticleVendu {
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEncheres=" + dateDebutEncheres.toString() + ", dateFinEncheres=" + dateFinEncheres.toString() + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", utilisateur=" + utilisateur.getPrenom()
-				+ ", categorieArticle=" + categorieArticle + ", lieuRetrait=" + lieuRetrait + ", listeEnchere="
-				+ listeEnchere.size() + "]"; // TODO
+				+ ", dateDebutEncheres=" + dateDebutEncheres.toString() + ", dateFinEncheres="
+				+ dateFinEncheres.toString() + ", miseAPrix=" + miseAPrix + ", prixVente=" + prixVente + ", etatVente="
+				+ etatVente + ", utilisateur=" + utilisateur.getPrenom() + ", categorieArticle=" + categorieArticle
+				+ ", lieuRetrait=" + lieuRetrait + ", listeEnchere=" + listeEnchere.size() + "]"; // TODO
 	}
 
 }
