@@ -89,10 +89,7 @@ public class Enchere {
 	 * @param utilisateur
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
-		if (this.utilisateur == null) {
-			this.utilisateur = utilisateur;
-			this.utilisateur.addListeEncheres(this);
-		}
+		this.utilisateur = utilisateur;
 	}
 
 	/**
@@ -110,10 +107,7 @@ public class Enchere {
 	 * @param articleVendu
 	 */
 	public void setArticleVendu(ArticleVendu articleVendu) {
-		if (this.articleVendu == null) {
-			this.articleVendu = articleVendu;
-			this.articleVendu.addListeEnchere(this);
-		}
+		this.articleVendu = articleVendu;
 	}
 
 	/**
@@ -136,8 +130,19 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "Enchere [idEnchere=" + idEnchere + ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere
-				+ ", utilisateur=" + utilisateur.getPrenom() + ", articleVendu=" + articleVendu + "]"; //TODO
+		StringBuilder builder = new StringBuilder();
+		builder.append("Enchere [idEnchere=");
+		builder.append(idEnchere);
+		builder.append(", dateEnchere=");
+		builder.append(dateEnchere);
+		builder.append(", montantEnchere=");
+		builder.append(montantEnchere);
+		builder.append(", utilisateur=");
+		builder.append(utilisateur.getPseudo());
+		builder.append(", articleVendu=");
+		builder.append(articleVendu.getNomArticle());
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

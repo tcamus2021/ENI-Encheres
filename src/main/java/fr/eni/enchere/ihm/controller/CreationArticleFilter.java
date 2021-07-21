@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.eni.enchere.bll.BLLFactorySingl;
+import fr.eni.enchere.bll.BLLexception;
 import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Retrait;
@@ -77,10 +78,18 @@ public class CreationArticleFilter implements Filter {
 				article.setMiseAPrix(Integer.parseInt(request.getParameter("creation-vente-prix")));
 				article.setPrixVente(Integer.parseInt(request.getParameter("creation-vente-prix")));
 				
+
 				Retrait retrait = new Retrait();
-				retrait.setRue(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getRue());
-				retrait.setCodePostal(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getCodePostal());
-				retrait.setVille(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getVille());
+				if(!request.getParameter("creation-vente-ville").equals("") && !request.getParameter("creation-vente-cp").equals("")
+						&& !request.getParameter("creation-vente-rue").equals("")) {
+					retrait.setRue(request.getParameter("creation-vente-rue"));
+					retrait.setCodePostal(Integer.parseInt(request.getParameter("creation-vente-cp")));
+					retrait.setVille(request.getParameter("creation-vente-ville"));
+				} else {
+					retrait.setRue(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getRue());
+					retrait.setCodePostal(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getCodePostal());
+					retrait.setVille(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getVille());
+				}
 				
 				article.setLieuRetrait(retrait);
 				
@@ -89,8 +98,11 @@ public class CreationArticleFilter implements Filter {
 				BLLFactorySingl.createInstanceVente().vendre(article);
 
 				chain.doFilter(request, response);
-			} catch (Exception e) {
+			} catch (BLLexception e) {
 				request.setAttribute("erreur", e.getMessage());
+				request.getRequestDispatcher("/vente-creation").forward(request, response);
+			} catch (Exception e) {
+				request.setAttribute("erreur", "Erreur, veuillez vérifier vos champs");
 				request.getRequestDispatcher("/vente-creation").forward(request, response);
 			}
 		}
