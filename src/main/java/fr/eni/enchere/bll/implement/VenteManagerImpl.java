@@ -32,8 +32,19 @@ public class VenteManagerImpl implements VenteManager {
 			if (articleVendu.getDateDebutEncheres().after(articleVendu.getDateFinEncheres())) {
 				throw new BLLexception("Date de début avant celle de fin");
 			}
-			
 			DAOFactory.getDaoArticlesVendus().insert(articleVendu);
+			listeArticleVendu = DAOFactory.getDaoArticlesVendus().getAll();
+			Retrait ajoutRetrait = new Retrait();
+			for (ArticleVendu articleVenduForEach : listeArticleVendu) {
+				if (articleVenduForEach.getNomArticle().equals(articleVendu.getNomArticle())
+						&& articleVenduForEach.getDescription().equals(articleVendu.getDescription())) {
+					ajoutRetrait.setRue(articleVenduForEach.getLieuRetrait().getRue());
+					ajoutRetrait.setCodePostal(articleVenduForEach.getLieuRetrait().getCodePostal());
+					ajoutRetrait.setVille(articleVenduForEach.getLieuRetrait().getVille());
+					ajoutRetrait.setArticle(articleVenduForEach);
+				}
+			}
+			DAOFactory.getDaoRetrait().insert(ajoutRetrait);
 		} catch (Exception e) {
 			throw new BLLexception(e.getMessage());
 		}
