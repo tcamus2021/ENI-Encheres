@@ -3,6 +3,8 @@ package fr.eni.enchere.ihm.test;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bo.Enchere;
+import fr.eni.enchere.bo.Retrait;
 import fr.eni.enchere.bll.BLLFactorySingl;
 import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.Categorie;
@@ -76,52 +79,34 @@ public class TestDAL extends HttpServlet {
 //
 //			DAOFactory.getDaoUtilisateurs().delete(2);
 //
-//			System.out.println(DAOFactory.getDaoUtilisateurs().getAll());
-//
 //			Utilisateur rene2 = DAOFactory.getDaoUtilisateurs().getById(1);
 //			rene2.setMotDePasse(((Integer) "NouveauMDP".hashCode()).toString());
 //
 //			DAOFactory.getDaoUtilisateurs().update(rene2);
 
-			Utilisateur rene = BLLFactorySingl.createInstanceUtilisateur().getUtilisateurByPseudo("tanguy@mail.gouv");
+//			System.out.println("_________________Test DAO Categories____________________");
 //			
-			Categorie vetement = new Categorie();
-			vetement.setNoCategorie(3);
-			vetement.setLibelle("Vêtement");
+//			Categorie sport = new Categorie();
+//			sport.setLibelle("aquatique");
+//			DAOFactory.getDaoCategories().insert(sport); // erreur à l'insertion
 //			
-			ArticleVendu polo = new ArticleVendu();
-			polo.setNoArticle(2); //ICI
-			polo.setNomArticle("Polo Blanc");
-			polo.setDescription("Couleur Blanche");
-			polo.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
-			polo.setDateFinEncheres(Date.valueOf(LocalDate.of(2021, 07, 23)));
-			polo.setMiseAPrix(20);
-			polo.setPrixVente(60);
-			polo.setUtilisateur(rene);
-			polo.setCategorieArticle(vetement);
-			polo.setLienImage("/WEB-INF/img/default.png");
+//			System.out.println(DAOFactory.getDaoCategories().getById(1));
 //			
-//			DAOFactory.getDaoArticlesVendus().insert(polo);
+//			Categorie loisirs = new Categorie();
+//			loisirs.setLibelle("manger");
+//			DAOFactory.getDaoCategories().insert(loisirs);
+//			
+//			System.out.println(DAOFactory.getDaoCategories().getAll());
+//			
 
-//			System.out.println(DAOFactory.getDaoArticlesVendus().getAll());
-//			
-//			System.out.println(DAOFactory.getDaoArticlesVendus().getById(1));
-			
-//			DAOFactory.getDaoArticlesVendus().update(polo);
-			
-			DAOFactory.getDaoArticlesVendus().delete(2);
-
-			
-			
-			
 			
 //			System.out.println("_________________Test DAO Encheres____________________");
 //
 //			Enchere enchere1 = new Enchere();
 //			enchere1.setDateEnchere(null);
 //			enchere1.setMontantEnchere(200);
-////			enchere1.setArticleVendu().setNoArticle(1);
-////			enchere1.setUtilisateur().setNoUtilisateur(2);
+//			enchere1.setArticleVendu().setNoArticle(1);
+//			enchere1.setUtilisateur().setNoUtilisateur(2);
 //			
 //
 //			DAOFactory.getDaoEnchere().insert(enchere1);
@@ -129,8 +114,8 @@ public class TestDAL extends HttpServlet {
 //			Enchere enchere2 = new Enchere();
 //			enchere2 .setDateEnchere(null);
 //			enchere2 .setMontantEnchere(300);
-////			enchere2 .setArticleVendu().setNoArticle(1);
-////			enchere2 .setUtilisateur().setNoUtilisateur(2);
+//			enchere2 .setArticleVendu().setNoArticle(1);
+//			enchere2 .setUtilisateur().setNoUtilisateur(2);
 //			
 //			System.out.println(DAOFactory.getDaoEnchere().getById(1));
 //			
@@ -147,6 +132,14 @@ public class TestDAL extends HttpServlet {
 //			
 //			DAOFactory.getDaoEnchere().update(enchere2);
 			
+System.out.println("_________________Test DAO Retrait____________________");
+		
+		Retrait retrait1 = new Retrait();
+		retrait1.setRue("rue des mouettes");
+		retrait1.setCodePostal(44000);
+		retrait1.setVille("Nantes");
+			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
