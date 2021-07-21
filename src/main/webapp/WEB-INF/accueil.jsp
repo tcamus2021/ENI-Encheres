@@ -21,10 +21,10 @@
             </c:if>
 			<c:if test="${login.nom != null }">
             <div class="d-flex position-relative">
-              <div> <a href="vente" class="stretched-link">Enchères</a></div>
+              <div> <a href="accueil" class="stretched-link">Enchères</a></div>
             </div>
             <div class="d-flex position-relative">
-              <div> <a href="vente" class="stretched-link">Vendre un article</a></div>
+              <div> <a href="vente-creation" class="stretched-link">Vendre un article</a></div>
             </div>
             <div class="d-flex position-relative">
               <div> <a href="compte" class="stretched-link">Mon profil</a></div>
@@ -121,7 +121,7 @@
         <div class="card mb-3" >
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="rat.jpg" class="w-75 bg-info" alt="...">
+              <img src="rat.jpg" class="w-75 bg-info" alt="">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -138,7 +138,7 @@
         <div class="card mb-3" >
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="licorne.jpg" class="w-75 bg-info" alt="...">
+              <img src="licorne.jpg" class="w-75 bg-info" alt="">
             </div>
             <div class="col-md-8">
               <div class="card-body">

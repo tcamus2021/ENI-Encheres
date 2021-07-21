@@ -32,16 +32,6 @@ public class VenteManagerImpl implements VenteManager {
 			if (articleVendu.getDateDebutEncheres().after(articleVendu.getDateFinEncheres())) {
 				throw new BLLexception("Date de début avant celle de fin");
 			}
-
-			articleVendu.setPrixVente(articleVendu.getMiseAPrix());
-
-			if (articleVendu.getLieuRetrait() == null) {
-				Retrait adresseUtilisateur = new Retrait();
-				adresseUtilisateur.setRue(articleVendu.getUtilisateur().getRue());
-				adresseUtilisateur.setCodePostal(articleVendu.getUtilisateur().getCodePostal());
-				adresseUtilisateur.setVille(articleVendu.getUtilisateur().getVille());
-				articleVendu.setLieuRetrait(adresseUtilisateur);
-			}
 			
 			DAOFactory.getDaoArticlesVendus().insert(articleVendu);
 		} catch (Exception e) {
@@ -133,32 +123,32 @@ public class VenteManagerImpl implements VenteManager {
 
 		if (articleVendu.getDateDebutEncheres() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Date de début de l'article manquant");
 		}
 
 		if (articleVendu.getDateFinEncheres() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Date de fin de l'article manquant");
 		}
 
 		if (articleVendu.getDescription() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Description de l'article manquant");
 		}
 
 		if (articleVendu.getMiseAPrix() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Mise à prix de l'article manquant");
 		}
 
 		if (articleVendu.getNomArticle() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Nom de l'article manquant");
 		}
 
 		if (articleVendu.getUtilisateur() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Utilisateur de l'article manquant");
 		}
 
 		if (erreur) {

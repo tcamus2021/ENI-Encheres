@@ -44,6 +44,7 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 
 			insert.executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new DALexception("Erreur à l'insertion de l'article");
 		}
 	}
