@@ -32,7 +32,7 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 			java.sql.Date dateSQL = java.sql.Date.valueOf(formattedDate);
 			insert.setString(3, dateSQL.toString());
 
-			formattedDate = simpleDateFormat.format(article.getDateDebutEncheres());
+			formattedDate = simpleDateFormat.format(article.getDateFinEncheres());
 			dateSQL = java.sql.Date.valueOf(formattedDate);
 			insert.setString(4, dateSQL.toString());
 
@@ -101,7 +101,7 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 			java.sql.Date dateSQL = java.sql.Date.valueOf(formattedDate);
 			update.setString(3, dateSQL.toString());
 
-			formattedDate = simpleDateFormat.format(article.getDateDebutEncheres());
+			formattedDate = simpleDateFormat.format(article.getDateFinEncheres());
 			dateSQL = java.sql.Date.valueOf(formattedDate);
 			update.setString(4, dateSQL.toString());
 			

@@ -73,30 +73,39 @@ public class CreationArticleFilter implements Filter {
 				article.setDescription(request.getParameter("creation-vente-description"));
 				article.setDateDebutEncheres(Date.valueOf(request.getParameter("creation-vente-date-debut")));
 				article.setDateFinEncheres(Date.valueOf(request.getParameter("creation-vente-date-fin")));
-				// TODO add image
-				article.setLienImage("/WEB-INF/img/default.png");
+				article.setLienImage("/WEB-INF/img/default.png"); // TODO add image
 				article.setMiseAPrix(Integer.parseInt(request.getParameter("creation-vente-prix")));
 				article.setPrixVente(Integer.parseInt(request.getParameter("creation-vente-prix")));
-				
 
 				Retrait retrait = new Retrait();
-				if(!request.getParameter("creation-vente-ville").equals("") && !request.getParameter("creation-vente-cp").equals("")
+				if (!request.getParameter("creation-vente-ville").equals("")
+						&& !request.getParameter("creation-vente-cp").equals("")
 						&& !request.getParameter("creation-vente-rue").equals("")) {
 					retrait.setRue(request.getParameter("creation-vente-rue"));
 					retrait.setCodePostal(Integer.parseInt(request.getParameter("creation-vente-cp")));
 					retrait.setVille(request.getParameter("creation-vente-ville"));
 				} else {
-					retrait.setRue(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getRue());
-					retrait.setCodePostal(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getCodePostal());
-					retrait.setVille(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")).getVille());
+					retrait.setRue(
+							((Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("login")).getRue());
+					retrait.setCodePostal(
+							((Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("login"))
+									.getCodePostal());
+					retrait.setVille(((Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("login"))
+							.getVille());
 				}
-				
+
+				// Lien article - retrait
 				article.setLieuRetrait(retrait);
+				retrait.setArticle(article);
 				
-				article.setUtilisateur(((Utilisateur)((HttpServletRequest)request).getSession().getAttribute("login")));
+				// Lien utilisateur - article
+				article.setUtilisateur(
+						((Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("login")));
+				Utilisateur courant = ((Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("login"));
+				courant.addListeArticlesVendus(article);
+				((HttpServletRequest) request).getSession().setAttribute("login", courant);
 				
 				BLLFactorySingl.createInstanceVente().vendre(article);
-
 				chain.doFilter(request, response);
 			} catch (BLLexception e) {
 				request.setAttribute("erreur", e.getMessage());

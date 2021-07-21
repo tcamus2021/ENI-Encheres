@@ -24,6 +24,10 @@ public class VenteManagerImpl implements VenteManager {
 	public void vendre(ArticleVendu articleVendu) throws BLLexception {
 		try {
 			testArticleVendu(articleVendu);
+			
+			if(articleVendu.getCategorieArticle().getNoCategorie() == null) {
+				throw new BLLexception("Veuillez choisir une catégorie");
+			}
 
 			if (articleVendu.getDateDebutEncheres().before(Date.valueOf(LocalDate.now()))) {
 				throw new BLLexception("Date de début antérieur à la date actuelle");
@@ -32,19 +36,19 @@ public class VenteManagerImpl implements VenteManager {
 			if (articleVendu.getDateDebutEncheres().after(articleVendu.getDateFinEncheres())) {
 				throw new BLLexception("Date de début avant celle de fin");
 			}
+			
 			DAOFactory.getDaoArticlesVendus().insert(articleVendu);
-			listeArticleVendu = DAOFactory.getDaoArticlesVendus().getAll();
-			Retrait ajoutRetrait = new Retrait();
+			
+			this.listeArticleVendu = DAOFactory.getDaoArticlesVendus().getAll();
 			for (ArticleVendu articleVenduForEach : listeArticleVendu) {
-				if (articleVenduForEach.getNomArticle().equals(articleVendu.getNomArticle())
-						&& articleVenduForEach.getDescription().equals(articleVendu.getDescription())) {
-					ajoutRetrait.setRue(articleVenduForEach.getLieuRetrait().getRue());
-					ajoutRetrait.setCodePostal(articleVenduForEach.getLieuRetrait().getCodePostal());
-					ajoutRetrait.setVille(articleVenduForEach.getLieuRetrait().getVille());
-					ajoutRetrait.setArticle(articleVenduForEach);
+				if(articleVendu.getNomArticle().equals(articleVenduForEach.getNomArticle())
+						&& articleVendu.getDescription().equals(articleVenduForEach.getDescription())){
+					articleVendu.setNoArticle(articleVenduForEach.getNoArticle());
 				}
 			}
-			DAOFactory.getDaoRetrait().insert(ajoutRetrait);
+			
+			DAOFactory.getDaoRetrait().insert(articleVendu.getLieuRetrait());
+			
 		} catch (Exception e) {
 			throw new BLLexception(e.getMessage());
 		}
