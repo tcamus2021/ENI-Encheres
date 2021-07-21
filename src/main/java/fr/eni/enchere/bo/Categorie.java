@@ -94,24 +94,20 @@ public class Categorie {
 	 * @param articleVendu
 	 */
 	public void addArticleVendu(ArticleVendu articleVendu) {
-		boolean trouver = false;
-		if (this.listeArticleVendu.size() != 0) {
-			for (ArticleVendu articleVenduForeach : this.listeArticleVendu) {
-				if (articleVenduForeach.getNoArticle() == articleVendu.getNoArticle()) {
-					trouver = true;
-				}
-			}
-		}
-		if (!trouver) {
-			this.listeArticleVendu.add(articleVendu);
-			articleVendu.setCategorieArticle(this);
-		}
+		this.listeArticleVendu.add(articleVendu);
 	}
 
 	@Override
 	public String toString() {
-		return "Categorie [noCategorie=" + noCategorie + ", libelle=" + libelle + ", listeArticleVendu="
-				+ listeArticleVendu.size() + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Categorie [noCategorie=");
+		builder.append(noCategorie);
+		builder.append(", libelle=");
+		builder.append(libelle);
+		builder.append(", listeArticleVendu=");
+		builder.append(listeArticleVendu);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
