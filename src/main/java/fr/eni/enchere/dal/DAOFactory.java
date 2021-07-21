@@ -6,6 +6,8 @@ import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Retrait;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.dao.DAOArticlesVendus;
+import fr.eni.enchere.dal.dao.DAOCategories;
+import fr.eni.enchere.dal.dao.DAOEncheres;
 import fr.eni.enchere.dal.dao.DAORetrait;
 import fr.eni.enchere.dal.dao.DAOUtilisateurs;
 import fr.eni.enchere.dal.mock.MockArticlesVendus;
@@ -33,7 +35,7 @@ public class DAOFactory {
 	 * @return
 	 */
 	public static DAOEniEnchere<Categorie> getDaoCategories() {
-			return new MockCategories();
+			return new DAOCategories();
 	}
 	
 	/**
@@ -41,7 +43,7 @@ public class DAOFactory {
 	 * @return
 	 */
 	public static DAOEniEnchere<Enchere> getDaoEnchere() {
-		return new MockEncheres();
+		return new DAOEncheres();
 	}
 	
 	/**

@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLFactorySingl;
+import fr.eni.enchere.bll.BLLexception;
+import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.ihm.model.ModelArticleVendu;
+
 /**
  * Servlet implementation class ServletAccueil
  */
@@ -23,7 +28,17 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ModelArticleVendu model = new ModelArticleVendu();
+		try {
+			BLLFactorySingl.createInstanceVente().getAllArticleVendu();
+		} catch (BLLexception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+		// articles 
 	}
 
 	/**
