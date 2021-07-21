@@ -29,7 +29,7 @@ public class DAORetrait implements DAOEniEnchere<Retrait> {
 			insert.setString(4, retrait.getVille());
 			insert.executeUpdate();
 		} catch (Exception e) {
-			throw new DALexception("Erreur à l'inserton du lieu de retrait");
+			throw new DALexception("Erreur à l'insertion du lieu de retrait");
 		}
 	}
 

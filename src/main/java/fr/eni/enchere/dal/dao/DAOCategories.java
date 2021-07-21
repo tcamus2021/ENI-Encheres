@@ -14,7 +14,7 @@ import fr.eni.enchere.dal.DAOEniEnchere;
 import fr.eni.enchere.dal.connexion.JDBCtools;
 
 public class DAOCategories implements DAOEniEnchere<Categorie> {
-	private String insertCommande = "INSERT INTO CATEGORIES VALUES5 (?,);";
+	private String insertCommande = "INSERT INTO CATEGORIES VALUES(?);";
 	private String selectAllCommande = "SELECT * FROM CATEGORIES;";
 	private String deleteCommande = "DELETE FROM CATEGORIES WHERE no_categorie = ?";
 	private String updateCommande = "UPDATE CATEGORIES SET libelle = ?," + "WHERE no_categorie = ?;";
