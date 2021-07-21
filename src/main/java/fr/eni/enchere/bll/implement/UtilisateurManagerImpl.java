@@ -2,9 +2,12 @@ package fr.eni.enchere.bll.implement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import fr.eni.enchere.bll.BLLFactorySingl;
 import fr.eni.enchere.bll.BLLexception;
 import fr.eni.enchere.bll.interfaces.UtilisateurManager;
+import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 
@@ -65,7 +68,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	@Override
 	public List<Utilisateur> getAll() throws BLLexception {
 		try {
-			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
+			miseAJourListe();
 		} catch (Exception e) {
 			throw new BLLexception("Erreur à la récupération des utilisateurs");
 		}
@@ -148,7 +151,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		} catch (Exception e) {
 			throw new BLLexception(e.getMessage());
 		}
-		
+
 		Utilisateur utilisateurCourant = new Utilisateur();
 		for (Utilisateur utilisateurForEach : this.listeUtilisateurs) {
 			if (utilisateurForEach.getPseudo().equals(login)) {
@@ -166,6 +169,36 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		Integer motDePasseChiffrer = motDePasse.hashCode();
 		if (!motDePasseChiffrer.toString().equals(utilisateurCourant.getMotDePasse())) {
 			throw new BLLexception("Mot de passe incorectes");
+		}
+	}
+
+	public void miseAJourListe() throws BLLexception {
+		try {
+			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
+			List<Utilisateur> mettreAJour = DAOFactory.getDaoUtilisateurs().getAll();
+
+			Map<Integer, Integer> lienUtilisateurEncheres = DAOFactory.getDaoLien().lienArticleUtilisateur();
+			List<Enchere> encheres = new ArrayList<>();
+			
+			for (Map.Entry<Integer, Integer> entree : lienUtilisateurEncheres.entrySet()) {
+				Enchere courante = new Enchere();
+				courante = DAOFactory.getDaoEnchere().getById(entree.getKey());
+				encheres.add(courante);
+			}
+			
+			for (Enchere enchere : encheres) {
+				Integer idUtilisateur = lienUtilisateurEncheres.get(enchere.getIdEnchere());
+				if(idUtilisateur != null) {
+					Utilisateur courant = DAOFactory.getDaoUtilisateurs().getById(idUtilisateur);
+					courant.addListeEncheres(enchere);
+					enchere.setUtilisateur(courant);
+					mettreAJour.add(courant); // FIXME
+				}
+			}
+			this.listeUtilisateurs = mettreAJour;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BLLexception("Erreur lors de la mise à jour de la liste");
 		}
 	}
 }

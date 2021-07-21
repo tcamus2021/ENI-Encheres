@@ -116,56 +116,12 @@ public class DAOEncheres implements DAOEniEnchere<Enchere> {
 			selectID.setInt(1, id);
 			ResultSet resultat = selectID.executeQuery();
 			while (resultat.next()) {
+				ret.setIdEnchere(id);
 				ret.setDateEnchere(resultat.getDate("date_enchere"));
 				ret.setMontantEnchere(resultat.getInt("montant_enchere"));
-
-				// Récupérer via le numéro d'article trouvé, l'article correspondant dans sa
-				// table
-				PreparedStatement selectByIdArticle = connexion
-						.prepareStatement("SELECT * FROM ARTICLES_VENDUS WHERE no_article = ?");
-				selectByIdArticle.setInt(1, resultat.getInt("no_article"));
-				ResultSet resultatSelectByIdArticle = selectByIdArticle.executeQuery();
-				ArticleVendu retArticle = new ArticleVendu();
-				// Créer notre Article
-				while (resultatSelectByIdArticle.next()) {
-					retArticle.setNoArticle(resultatSelectByIdArticle.getInt("no_article"));
-					retArticle.setNomArticle(resultatSelectByIdArticle.getString("nom_article"));
-					retArticle.setDescription(resultatSelectByIdArticle.getString("description"));
-					retArticle.setDateDebutEncheres(resultatSelectByIdArticle.getDate("date_debut_enchere"));
-					retArticle.setDateFinEncheres(resultatSelectByIdArticle.getDate("date_fin_enchere"));
-					retArticle.setMiseAPrix(resultatSelectByIdArticle.getInt("prix_initial"));
-					retArticle.setPrixVente(resultatSelectByIdArticle.getInt("prix_vente"));
-					retArticle.setUtilisateur(null);
-					retArticle.setCategorieArticle(null);
-				}
-				ret.setArticleVendu(retArticle);
-
-				PreparedStatement selectByIdUtilisateur = connexion
-						.prepareStatement("SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?");
-				selectByIdUtilisateur.setInt(1, resultat.getInt("no_utilisateur"));
-				ResultSet resultatSelectByIdUtilisateur = selectByIdUtilisateur.executeQuery();
-				Utilisateur retUtilisateur = new Utilisateur();
-
-				while (resultatSelectByIdUtilisateur.next()) {
-					retUtilisateur.setNoUtilisateur(resultatSelectByIdUtilisateur.getInt("no_utilisateur"));
-					retUtilisateur.setPseudo(resultatSelectByIdUtilisateur.getString("pseudo"));
-					retUtilisateur.setNom(resultatSelectByIdUtilisateur.getString("nom"));
-					retUtilisateur.setPrenom(resultatSelectByIdUtilisateur.getString("prenom"));
-					retUtilisateur.setEmail(resultatSelectByIdUtilisateur.getString("email"));
-					retUtilisateur.setTelephone(resultatSelectByIdUtilisateur.getString("telephone"));
-					retUtilisateur.setRue(resultatSelectByIdUtilisateur.getString("rue"));
-					retUtilisateur
-							.setCodePostal(Integer.parseInt(resultatSelectByIdUtilisateur.getString("code_postal")));
-					retUtilisateur.setVille(resultatSelectByIdUtilisateur.getString("ville"));
-					retUtilisateur.setMotDePasse(resultatSelectByIdUtilisateur.getString("mot_de_passe"));
-					retUtilisateur.setCredit(resultatSelectByIdUtilisateur.getInt("credit"));
-				}
-				ret.setUtilisateur(retUtilisateur);
-
 			}
 			connexion.close();
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DALexception("Erreur à la récupération de l'enchere");
 		}
 		return ret;

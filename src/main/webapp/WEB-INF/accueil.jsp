@@ -118,15 +118,16 @@
           </c:if>
               <!--  -->
       <section>
-        <div class="card mb-3" >
+      <c:forEach var="article" items="${model.articlesVendus}">
+        <div class="card mb-3">
           <div class="row g-0">
             <div class="col-md-4">
               <img src="rat.jpg" class="w-75 bg-info" alt="">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"> <u> Nom de l'article </u></h5>
-                <p class="card-text"> Prix : Classement : </p>
+                <h5 class="card-title">${article.nomArticle }</h5>
+                <p class="card-text"> Prix : ${article.prixVente} points</p>
                   <p class="card-text"> Fin de l'enchère : </p>
                   <p class="card-text"> Retrait : </p>
                   <p class="card-text"> Vendeur : </p>
@@ -134,23 +135,7 @@
             </div>
           </div>
         </div>
-
-        <div class="card mb-3" >
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="licorne.jpg" class="w-75 bg-info" alt="">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"> <u>Nom de l'article</u></h5>
-                <p class="card-text"> Prix :          Classement : </p>
-                  <p class="card-text"> Fin de l'enchère : </p>
-                  <p class="card-text"> Retrait : </p>
-                  <p class="card-text"> Vendeur : </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        </c:forEach>
       </section>   
 </main>
     </body>

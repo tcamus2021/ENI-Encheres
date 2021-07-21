@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.BLLFactorySingl;
 import fr.eni.enchere.bll.BLLexception;
-import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.ihm.model.ModelArticleVendu;
 
 /**
@@ -28,17 +27,15 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModelArticleVendu model = new ModelArticleVendu();
 		try {
-			BLLFactorySingl.createInstanceVente().getAllArticleVendu();
+			ModelArticleVendu model = new ModelArticleVendu();
+			model.setArticlesVendus(BLLFactorySingl.createInstanceVente().getAllArticleVendu());
+			request.setAttribute("model", model);
 		} catch (BLLexception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.setAttribute("erreur", "Erreur dans le chargement de la page");
+		} finally {
+			request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
 		}
-		
-		
-		request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
-		// articles 
 	}
 
 	/**
