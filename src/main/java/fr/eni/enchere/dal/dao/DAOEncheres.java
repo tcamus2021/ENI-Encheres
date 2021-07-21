@@ -166,7 +166,7 @@ public class DAOEncheres implements DAOEniEnchere<Enchere> {
 			connexion.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DALexception("Erreur à la récupération de l'utilisateur");
+			throw new DALexception("Erreur à la récupération de l'enchere");
 		}
 		return ret;
 	}
