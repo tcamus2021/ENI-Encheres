@@ -56,7 +56,7 @@ public class TestDAL extends HttpServlet {
 			rene.setCredit(500);
 			rene.setAdministrateur(false);
 
-			DAOFactory.getDaoUtilisateurs().insert(rene);
+//			DAOFactory.getDaoUtilisateurs().insert(rene);
 
 			Utilisateur robert = new Utilisateur();
 			robert.setPseudo("Xx_Robert_Du_24XX");
@@ -70,138 +70,151 @@ public class TestDAL extends HttpServlet {
 			robert.setMotDePasse("Robert");
 			robert.setCredit(500);
 			robert.setAdministrateur(false);
+			
+	
 
 //			System.out.println(DAOFactory.getDaoUtilisateurs().getById(1));
 
-			DAOFactory.getDaoUtilisateurs().insert(robert);
-
+//			DAOFactory.getDaoUtilisateurs().insert(robert);
+//
 //			System.out.println(DAOFactory.getDaoUtilisateurs().getAll());
+//
+//			DAOFactory.getDaoUtilisateurs().delete(1);
+//
+//			Utilisateur rene2 = DAOFactory.getDaoUtilisateurs().getById(1);
+//			rene2.setMotDePasse(((Integer) "NouveauMDP".hashCode()).toString());
+//
+//			DAOFactory.getDaoUtilisateurs().update(rene2);
 
-			DAOFactory.getDaoUtilisateurs().delete(2);
-
-			Utilisateur rene2 = DAOFactory.getDaoUtilisateurs().getById(1);
-			rene2.setMotDePasse(((Integer) "NouveauMDP".hashCode()).toString());
-
-			DAOFactory.getDaoUtilisateurs().update(rene2);
-
-System.out.println("_________________Test DAO Categories____________________");
+			System.out.println("_________________Test DAO Categories____________________");
 		
 			Categorie sport = new Categorie();
 			sport.setLibelle("sport aquatique");
-			DAOFactory.getDaoCategories().insert(sport); 
+//			DAOFactory.getDaoCategories().insert(sport); 
+//			
+//			System.out.println(DAOFactory.getDaoCategories().getById(1));
 			
-			System.out.println(DAOFactory.getDaoCategories().getById(1));
-			
-			Categorie loisirs = new Categorie();
-			loisirs.setLibelle("parc d'attraction");
-			DAOFactory.getDaoCategories().insert(loisirs);
-			
-			Categorie meuble = new Categorie();
-			meuble.setLibelle("meuble");
-			DAOFactory.getDaoCategories().insert(meuble);
-			
-			System.out.println(DAOFactory.getDaoCategories().getAll());
-			
-			DAOFactory.getDaoCategories().delete(3);
+			Categorie sport2 = new Categorie();
+			sport2.setLibelle("escrime");
+//			DAOFactory.getDaoCategories().insert(sport2);
 
-			Categorie meuble1 = DAOFactory.getDaoCategories().getById(3);
-			meuble1.setLibelle("canape");
-
-			DAOFactory.getDaoCategories().update(meuble1);
+//			System.out.println(DAOFactory.getDaoCategories().getById(48));
+//			System.out.println(DAOFactory.getDaoCategories().getById(50));
+			
+			Categorie sport3 = new Categorie();
+			sport3.setLibelle("pétanque");
+//			DAOFactory.getDaoCategories().insert(sport3);
+			
+//			System.out.println(DAOFactory.getDaoCategories().getAll());			
+//			DAOFactory.getDaoCategories().delete(50);
+//
+//			Categorie sport4 = new Categorie();
+//			sport4.setLibelle("volley");
+//
+//			DAOFactory.getDaoCategories().update(sport4);
+//			sport4.setLibelle("gym");
 
 			
 System.out.println("_________________Test DAO Encheres____________________");
 			
-			Utilisateur julia = new Utilisateur();
-			julia.setPseudo("Juju");
-			julia.setNom("Le Gall");
-			julia.setPrenom("Julia");
-			julia.setEmail("julia@mail.fr");
-			julia.setTelephone("0617513533");
-			julia.setRue("48 allée des framboisiers");
-			julia.setCodePostal(44300);
-			julia.setVille("Reze");
-			julia.setMotDePasse("jujudu29");
-			julia.setCredit(500);
-			julia.setAdministrateur(false);
+//			Utilisateur julia = new Utilisateur();
+//			julia.setPseudo("Juju");
+//			julia.setNom("Le Gall");
+//			julia.setPrenom("Julia");
+//			julia.setEmail("julia@mail.fr");
+//			julia.setTelephone("0617513533");
+//			julia.setRue("48 allée des framboisiers");
+//			julia.setCodePostal(44300);
+//			julia.setVille("Reze");
+//			julia.setMotDePasse("jujudu29");
+//			julia.setCredit(500);
+//			julia.setAdministrateur(false);
+//
+//			DAOFactory.getDaoUtilisateurs().insert(julia);
+//			
+//			Retrait retrait0 = new Retrait();
+//			retrait0.setArticle(bureau);
+//			retrait0.setRue("rue des mouettes");
+//			retrait0.setCodePostal(44000);
+//			retrait0.setVille("Nantes");
 
-			DAOFactory.getDaoUtilisateurs().insert(julia);
-			
-			ArticleVendu chaise = new ArticleVendu();
-			chaise.setNomArticle("chaise haute");
-			chaise.setDescription("Verte");
-			chaise.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
-			chaise.setDateFinEncheres(Date.valueOf(LocalDate.now()));
-			chaise.setMiseAPrix(20);
-			chaise.setPrixVente(80);
-			chaise.setEtatVente("Vendu");
-			chaise.setUtilisateur(julia);
-			chaise.setCategorieArticle(meuble);
-			chaise.setLienImage("www.image1.jpeg");
-			
-			DAOFactory.getDaoArticlesVendus().insert(chaise);
-			
-			Enchere enchere1 = new Enchere();
-			enchere1.setDateEnchere(Date.valueOf(LocalDate.now()));
-			enchere1.setMontantEnchere(200);
-			enchere1.setUtilisateur(julia);		
-			enchere1.setArticleVendu(chaise);
-			
-			DAOFactory.getDaoEnchere().insert(enchere1);
-			
-			Enchere enchere2 = new Enchere();
-			enchere2 .setDateEnchere(Date.valueOf(LocalDate.now()));
-			enchere2 .setMontantEnchere(300);
-			enchere2 .setArticleVendu(chaise);
-			enchere2 .setUtilisateur(robert);
-			
-//			System.out.println(DAOFactory.getDaoEnchere().getById(1));
-			
-			DAOFactory.getDaoEnchere().insert(enchere2);
-			
-//			System.out.println(DAOFactory.getDaoEnchere().getAll());
-			
-			DAOFactory.getDaoEnchere().delete(2);
 
-//			System.out.println(DAOFactory.getDaoEnchere().getAll());
+			ArticleVendu palme = new ArticleVendu();
+			palme.setNomArticle("Palme");
+			palme.setDescription("Verte");
+			palme.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
+			palme.setDateFinEncheres(Date.valueOf(LocalDate.now()));
+			palme.setMiseAPrix(20);
+			palme.setPrixVente(80);
+			palme.setEtatVente("Vendu");
+			palme.setUtilisateur(rene);
+			palme.setCategorieArticle(sport);
+			palme.setLienImage("www.imagepalme.jpeg");
+			palme.setLieuRetrait(null);
 			
-			Enchere enchere3 = DAOFactory.getDaoEnchere().getById(1);
-			enchere3.setMontantEnchere(500);
+			DAOFactory.getDaoArticlesVendus().insert(palme);
 			
-			DAOFactory.getDaoEnchere().update(enchere2);
-			
-		System.out.println("_________________Test DAO Retrait____________________");
-
-		ArticleVendu castor = new ArticleVendu();
-		castor.setNomArticle("Beaver");
-		castor.setDescription("Castor bleu");
-		castor.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
-		castor.setDateFinEncheres(Date.valueOf(LocalDate.now()));
-		castor.setMiseAPrix(100);
-		castor.setPrixVente(180);
-		castor.setEtatVente("Vendu");
-		castor.setUtilisateur(rene);
-		castor.setCategorieArticle(loisirs);
-		castor.setLienImage("www.image.jpeg");
-		
-		DAOFactory.getDaoArticlesVendus().insert(castor);
-		
-		Retrait retrait1 = new Retrait();
-		retrait1.setArticle(castor);
-		retrait1.setRue("rue des mouettes");
-		retrait1.setCodePostal(44000);
-		retrait1.setVille("Nantes");
-		
-		castor.setLieuRetrait(retrait1);
-	
-		
-		DAOFactory.getDaoRetrait().insert(retrait1);
+//			Enchere enchere1 = new Enchere();
+//			enchere1.setDateEnchere(Date.valueOf(LocalDate.now()));
+//			enchere1.setMontantEnchere(200);
+//			enchere1.setUtilisateur(rene);		
+//			enchere1.setArticleVendu(palme);
+//			DAOFactory.getDaoEnchere().insert(enchere1);
+//			
+//			Enchere enchere2 = new Enchere();
+//			enchere2.setDateEnchere(Date.valueOf(LocalDate.now()));
+//			enchere2.setMontantEnchere(300);
+//			enchere2.setArticleVendu(palme);
+//			enchere2.setUtilisateur(robert);
+//			
+////			System.out.println(DAOFactory.getDaoEnchere().getById(1));
+//			
+//			DAOFactory.getDaoEnchere().insert(enchere2);
+//			
+////			System.out.println(DAOFactory.getDaoEnchere().getAll());
+//			
+//			DAOFactory.getDaoEnchere().delete(2);
+//
+////			System.out.println(DAOFactory.getDaoEnchere().getAll());
+//			
+//			Enchere enchere3 = DAOFactory.getDaoEnchere().getById(1);
+//			enchere3.setMontantEnchere(500);
+//			
+//			DAOFactory.getDaoEnchere().update(enchere2);
+//			
+//		System.out.println("_________________Test DAO Retrait____________________");
+//
+//		ArticleVendu castor = new ArticleVendu();
+//		castor.setNomArticle("Beaver");
+//		castor.setDescription("Castor bleu");
+//		castor.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
+//		castor.setDateFinEncheres(Date.valueOf(LocalDate.now()));
+//		castor.setMiseAPrix(100);
+//		castor.setPrixVente(180);
+//		castor.setEtatVente("Vendu");
+//		castor.setUtilisateur(rene);
+//		castor.setCategorieArticle(loisirs);
+//		castor.setLienImage("www.image.jpeg");
+//		
+//		DAOFactory.getDaoArticlesVendus().insert(castor);
+//		
+//		Retrait retrait1 = new Retrait();
+//		retrait1.setArticle(castor);
+//		retrait1.setRue("rue des mouettes");
+//		retrait1.setCodePostal(44000);
+//		retrait1.setVille("Nantes");
+//		
+//		castor.setLieuRetrait(retrait1);
+//	
+//		
+//		DAOFactory.getDaoRetrait().insert(retrait1);
 //		System.out.println(DAOFactory.getDaoRetrait().getById(1));
 			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			
 		}
 	}
 
