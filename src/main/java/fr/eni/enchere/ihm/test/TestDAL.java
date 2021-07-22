@@ -114,9 +114,9 @@ public class TestDAL extends HttpServlet {
 //			DAOFactory.getDaoCategories().update(sport4);
 //			sport4.setLibelle("gym");
 
-			
-System.out.println("_________________Test DAO Encheres____________________");
-			
+		
+
+System.out.println("_________________Test DAO Articles____________________");			
 //			Utilisateur julia = new Utilisateur();
 //			julia.setPseudo("Juju");
 //			julia.setNom("Le Gall");
@@ -133,11 +133,10 @@ System.out.println("_________________Test DAO Encheres____________________");
 //			DAOFactory.getDaoUtilisateurs().insert(julia);
 //			
 //			Retrait retrait0 = new Retrait();
-//			retrait0.setArticle(bureau);
 //			retrait0.setRue("rue des mouettes");
 //			retrait0.setCodePostal(44000);
 //			retrait0.setVille("Nantes");
-
+//			DAOFactory.getDaoRetrait().insert(retrait0);
 
 			ArticleVendu palme = new ArticleVendu();
 			palme.setNomArticle("Palme");
@@ -147,35 +146,65 @@ System.out.println("_________________Test DAO Encheres____________________");
 			palme.setMiseAPrix(20);
 			palme.setPrixVente(80);
 			palme.setEtatVente("Vendu");
-			palme.setUtilisateur(rene);
-			palme.setCategorieArticle(sport);
+			palme.setUtilisateur(DAOFactory.getDaoUtilisateurs().getById(65));
+
+			Categorie cat = DAOFactory.getDaoCategories().getById(48);
+//			System.out.println(cat);
+			palme.setCategorieArticle(cat);
 			palme.setLienImage("www.imagepalme.jpeg");
-			palme.setLieuRetrait(null);
 			
-			DAOFactory.getDaoArticlesVendus().insert(palme);
+//			DAOFactory.getDaoArticlesVendus().insert(palme);
 			
-//			Enchere enchere1 = new Enchere();
-//			enchere1.setDateEnchere(Date.valueOf(LocalDate.now()));
-//			enchere1.setMontantEnchere(200);
-//			enchere1.setUtilisateur(rene);		
-//			enchere1.setArticleVendu(palme);
-//			DAOFactory.getDaoEnchere().insert(enchere1);
+			ArticleVendu cochonnet = new ArticleVendu();
+			cochonnet.setNomArticle("cochonnet");
+			cochonnet.setDescription("cochonnet de compétition");
+			cochonnet.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
+			cochonnet.setDateFinEncheres(Date.valueOf(LocalDate.now()));
+			cochonnet.setMiseAPrix(100);
+			cochonnet.setPrixVente(180);
+			cochonnet.setEtatVente("Vendu");
+			cochonnet.setUtilisateur(DAOFactory.getDaoUtilisateurs().getById(69));
+			Categorie cat1 = DAOFactory.getDaoCategories().getById(48);
+//			System.out.println(cat1);
+			cochonnet.setCategorieArticle(cat1);
+			cochonnet.setLienImage("www.image.jpeg");
+			
+//			DAOFactory.getDaoArticlesVendus().insert(cochonnet);
+		
+			
+//			for (ArticleVendu articleVendu : DAOFactory.getDaoArticlesVendus().getAll()) {
+//				System.out.println(articleVendu.getNomArticle());
+//			}
+
+//			System.out.println(DAOFactory.getDaoArticlesVendus().getById(3));
+//			System.out.println(DAOFactory.getDaoArticlesVendus().getById(1));
+			
+//			DAOFactory.getDaoArticlesVendus().delete(4);
+			
+System.out.println("_________________Test DAO Encheres____________________");
+			
+			Enchere enchere1 = new Enchere();
+			enchere1.setDateEnchere(Date.valueOf(LocalDate.now()));
+			enchere1.setMontantEnchere(200);
+			enchere1.setUtilisateur(DAOFactory.getDaoUtilisateurs().getById(69));		
+			enchere1.setArticleVendu(DAOFactory.getDaoArticlesVendus().getById(1));
+			DAOFactory.getDaoEnchere().insert(enchere1);
+			
+			Enchere enchere2 = new Enchere();
+			enchere2.setDateEnchere(Date.valueOf(LocalDate.now()));
+			enchere2.setMontantEnchere(300);
+			enchere2.setArticleVendu(palme);
+			enchere2.setUtilisateur(robert);
 //			
-//			Enchere enchere2 = new Enchere();
-//			enchere2.setDateEnchere(Date.valueOf(LocalDate.now()));
-//			enchere2.setMontantEnchere(300);
-//			enchere2.setArticleVendu(palme);
-//			enchere2.setUtilisateur(robert);
-//			
-////			System.out.println(DAOFactory.getDaoEnchere().getById(1));
+//			System.out.println(DAOFactory.getDaoEnchere().getById(1));
 //			
 //			DAOFactory.getDaoEnchere().insert(enchere2);
 //			
-////			System.out.println(DAOFactory.getDaoEnchere().getAll());
+//			System.out.println(DAOFactory.getDaoEnchere().getAll());
 //			
 //			DAOFactory.getDaoEnchere().delete(2);
 //
-////			System.out.println(DAOFactory.getDaoEnchere().getAll());
+//			System.out.println(DAOFactory.getDaoEnchere().getAll());
 //			
 //			Enchere enchere3 = DAOFactory.getDaoEnchere().getById(1);
 //			enchere3.setMontantEnchere(500);
@@ -184,19 +213,7 @@ System.out.println("_________________Test DAO Encheres____________________");
 //			
 //		System.out.println("_________________Test DAO Retrait____________________");
 //
-//		ArticleVendu castor = new ArticleVendu();
-//		castor.setNomArticle("Beaver");
-//		castor.setDescription("Castor bleu");
-//		castor.setDateDebutEncheres(Date.valueOf(LocalDate.now()));
-//		castor.setDateFinEncheres(Date.valueOf(LocalDate.now()));
-//		castor.setMiseAPrix(100);
-//		castor.setPrixVente(180);
-//		castor.setEtatVente("Vendu");
-//		castor.setUtilisateur(rene);
-//		castor.setCategorieArticle(loisirs);
-//		castor.setLienImage("www.image.jpeg");
-//		
-//		DAOFactory.getDaoArticlesVendus().insert(castor);
+
 //		
 //		Retrait retrait1 = new Retrait();
 //		retrait1.setArticle(castor);

@@ -15,7 +15,7 @@ import fr.eni.enchere.dal.DAOEniEnchere;
 import fr.eni.enchere.dal.connexion.JDBCtools;
 
 public class DAOEncheres implements DAOEniEnchere<Enchere> {
-	private String insertCommande = "INSERT INTO ENCHERES VALUES (?, ?, ?, ?,);";
+	private String insertCommande = "INSERT INTO ENCHERES VALUES (?, ?, ?, ?);";
 	private String selectAllCommande = "SELECT * FROM ENCHERES;";
 	private String deleteCommande = "DELETE FROM ENCHERES WHERE no_enchere = ?";
 	private String updateCommande = "UPDATE ENCHERES SET date_enchere = ?," + "montant_enchere = ?, "
@@ -33,7 +33,7 @@ public class DAOEncheres implements DAOEniEnchere<Enchere> {
 			insert.executeUpdate();
 			connexion.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			throw new DALexception("Erreur à l'insertion dans la base de données");
 		}
 	}
