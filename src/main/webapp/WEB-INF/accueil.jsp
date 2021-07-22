@@ -119,10 +119,24 @@
               <!--  -->
       <section>
       <c:forEach var="article" items="${model.articlesVendus}">
+      <form action="vente" method="post">
         <div class="card mb-3">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="rat.jpg" class="w-75 bg-info" alt="">
+            <input type="hidden" name="" value="${article.noArticle }">
+            <input type="hidden" value="${article.nomArticle }">
+            <input type="hidden" value="${article.description }">
+            <input type="hidden" value="${article.dateDebutEncheres }">
+            <input type="hidden" value="${article.dateFinEncheres }">
+            <input type="hidden" value="${article.miseAPrix }">
+            <input type="hidden" value="${article.prixVente }">
+            <input type="hidden" value="${article.etatVente }">
+<%--             <input type="hidden" value="${article.utilisateur.pseudo }">
+            <input type="hidden" value="${article.categorie.libelle }">
+            <input type="hidden" value="${article.retrait.rue }">
+            <input type="hidden" value="${article.retrait.codePostal }">
+            <input type="hidden" value="${article.retrait.ville }"> --%>
+              <img src="${article.lienImage }" class="w-75 bg-info" alt="">
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -135,6 +149,7 @@
             </div>
           </div>
         </div>
+        </form>
         </c:forEach>
       </section>   
 </main>

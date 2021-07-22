@@ -1,6 +1,7 @@
 package fr.eni.enchere.bll.implement;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -175,27 +176,42 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	public void miseAJourListe() throws BLLexception {
 		try {
 			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
-			List<Utilisateur> mettreAJour = DAOFactory.getDaoUtilisateurs().getAll();
 
-			Map<Integer, Integer> lienUtilisateurEncheres = DAOFactory.getDaoLien().lienArticleUtilisateur();
-			List<Enchere> encheres = new ArrayList<>();
-			
-			for (Map.Entry<Integer, Integer> entree : lienUtilisateurEncheres.entrySet()) {
-				Enchere courante = new Enchere();
-				courante = DAOFactory.getDaoEnchere().getById(entree.getKey());
-				encheres.add(courante);
-			}
-			
-			for (Enchere enchere : encheres) {
-				Integer idUtilisateur = lienUtilisateurEncheres.get(enchere.getIdEnchere());
-				if(idUtilisateur != null) {
-					Utilisateur courant = DAOFactory.getDaoUtilisateurs().getById(idUtilisateur);
-					courant.addListeEncheres(enchere);
-					enchere.setUtilisateur(courant);
-					mettreAJour.add(courant); // FIXME
+			List<Utilisateur> modification = new ArrayList<>();
+			Map<Integer, Integer> lienUtilisateurEncheres = DAOFactory.getDaoLien().lienEnchereUtilisateur();
+
+			for (Map.Entry<Integer, Integer> iteration : lienUtilisateurEncheres.entrySet()) {
+				Utilisateur utilisateurCourant = DAOFactory.getDaoUtilisateurs().getById(iteration.getValue());
+				Enchere enchereCourant = DAOFactory.getDaoEnchere().getById(iteration.getKey());
+
+				for (Utilisateur utilisateurForEach : modification) {
+					if (utilisateurForEach.getNoUtilisateur() == utilisateurCourant.getNoUtilisateur()) {
+						utilisateurCourant = utilisateurForEach;
+						modification.remove(utilisateurForEach);
+					}
+				}
+
+				if (enchereCourant.getIdEnchere() != null) {
+					enchereCourant.setUtilisateur(utilisateurCourant);
+					utilisateurCourant.addListeEncheres(enchereCourant);
+
+					modification.add(utilisateurCourant);
 				}
 			}
-			this.listeUtilisateurs = mettreAJour;
+
+			for (Utilisateur utilisateur : this.listeUtilisateurs) {
+				boolean trouve = false;
+				for (Utilisateur utilisateurAvecEnchere : modification) {
+					if(utilisateur.getNoUtilisateur() == utilisateurAvecEnchere.getNoUtilisateur()) {
+						trouve = true;
+					}
+				}
+				if(!trouve) {
+					modification.add(utilisateur);
+				}
+			}
+
+			this.listeUtilisateurs = modification;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BLLexception("Erreur lors de la mise à jour de la liste");

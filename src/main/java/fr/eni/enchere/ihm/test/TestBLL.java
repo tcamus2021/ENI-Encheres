@@ -1,6 +1,9 @@
 package fr.eni.enchere.ihm.test;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.BLLFactorySingl;
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.bo.Enchere;
+import fr.eni.enchere.dal.DAOFactory;
 
 /**
  * Servlet implementation class TestBLL
