@@ -60,6 +60,7 @@ public class DAOCategories implements DAOEniEnchere<Categorie> {
 			ResultSet resultat = selectID.executeQuery();
 			while (resultat.next()) {
 				ret.setLibelle(resultat.getString("libelle"));
+				ret.setNoCategorie(resultat.getInt("no_categorie"));
 			}
 			connexion.close();
 		} catch (Exception e) {
