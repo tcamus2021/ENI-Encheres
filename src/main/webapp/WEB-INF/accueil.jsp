@@ -21,10 +21,10 @@
             </c:if>
 			<c:if test="${login.nom != null }">
             <div class="d-flex position-relative">
-              <div> <a href="vente" class="stretched-link">Enchères</a></div>
+              <div> <a href="accueil" class="stretched-link">Enchères</a></div>
             </div>
             <div class="d-flex position-relative">
-              <div> <a href="vente" class="stretched-link">Vendre un article</a></div>
+              <div> <a href="vente-creation" class="stretched-link">Vendre un article</a></div>
             </div>
             <div class="d-flex position-relative">
               <div> <a href="compte" class="stretched-link">Mon profil</a></div>
@@ -118,15 +118,30 @@
           </c:if>
               <!--  -->
       <section>
-        <div class="card mb-3" >
+      <c:forEach var="article" items="${model.articlesVendus}">
+      <form action="vente" method="post">
+        <div class="card mb-3">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="rat.jpg" class="w-75 bg-info" alt="...">
+            <input type="hidden" name="" value="${article.noArticle }">
+            <input type="hidden" value="${article.nomArticle }">
+            <input type="hidden" value="${article.description }">
+            <input type="hidden" value="${article.dateDebutEncheres }">
+            <input type="hidden" value="${article.dateFinEncheres }">
+            <input type="hidden" value="${article.miseAPrix }">
+            <input type="hidden" value="${article.prixVente }">
+            <input type="hidden" value="${article.etatVente }">
+<%--             <input type="hidden" value="${article.utilisateur.pseudo }">
+            <input type="hidden" value="${article.categorie.libelle }">
+            <input type="hidden" value="${article.retrait.rue }">
+            <input type="hidden" value="${article.retrait.codePostal }">
+            <input type="hidden" value="${article.retrait.ville }"> --%>
+              <img src="${article.lienImage }" class="w-75 bg-info" alt="">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"> <u> Nom de l'article </u></h5>
-                <p class="card-text"> Prix : Classement : </p>
+                <h5 class="card-title">${article.nomArticle }</h5>
+                <p class="card-text"> Prix : ${article.prixVente} points</p>
                   <p class="card-text"> Fin de l'enchère : </p>
                   <p class="card-text"> Retrait : </p>
                   <p class="card-text"> Vendeur : </p>
@@ -134,23 +149,8 @@
             </div>
           </div>
         </div>
-
-        <div class="card mb-3" >
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="licorne.jpg" class="w-75 bg-info" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"> <u>Nom de l'article</u></h5>
-                <p class="card-text"> Prix :          Classement : </p>
-                  <p class="card-text"> Fin de l'enchère : </p>
-                  <p class="card-text"> Retrait : </p>
-                  <p class="card-text"> Vendeur : </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        </form>
+        </c:forEach>
       </section>   
 </main>
     </body>

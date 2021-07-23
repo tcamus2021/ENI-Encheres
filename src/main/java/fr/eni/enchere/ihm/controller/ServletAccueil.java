@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLFactorySingl;
+import fr.eni.enchere.bll.BLLexception;
+import fr.eni.enchere.ihm.model.ModelArticleVendu;
+
 /**
  * Servlet implementation class ServletAccueil
  */
@@ -23,7 +27,15 @@ public class ServletAccueil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+		try {
+			ModelArticleVendu model = new ModelArticleVendu();
+			model.setArticlesVendus(BLLFactorySingl.createInstanceVente().getAllArticleVendu());
+			request.setAttribute("model", model);
+		} catch (BLLexception e) {
+			request.setAttribute("erreur", "Erreur dans le chargement de la page");
+		} finally {
+			request.getRequestDispatcher("WEB-INF/accueil.jsp").forward(request, response);
+		}
 	}
 
 	/**

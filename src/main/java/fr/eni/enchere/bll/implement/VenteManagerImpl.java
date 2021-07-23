@@ -24,26 +24,31 @@ public class VenteManagerImpl implements VenteManager {
 	public void vendre(ArticleVendu articleVendu) throws BLLexception {
 		try {
 			testArticleVendu(articleVendu);
+			
+			if(articleVendu.getCategorieArticle().getNoCategorie() == null) {
+				throw new BLLexception("Veuillez choisir une catégorie");
+			}
 
 			if (articleVendu.getDateDebutEncheres().before(Date.valueOf(LocalDate.now()))) {
-				throw new BLLexception("Date de début antérieur à la date actuelle");
+				throw new BLLexception("Date de début de la vente antérieur à la date du jour");
 			}
 
 			if (articleVendu.getDateDebutEncheres().after(articleVendu.getDateFinEncheres())) {
-				throw new BLLexception("Date de début avant celle de fin");
-			}
-
-			articleVendu.setPrixVente(articleVendu.getMiseAPrix());
-
-			if (articleVendu.getLieuRetrait() == null) {
-				Retrait adresseUtilisateur = new Retrait();
-				adresseUtilisateur.setRue(articleVendu.getUtilisateur().getRue());
-				adresseUtilisateur.setCodePostal(articleVendu.getUtilisateur().getCodePostal());
-				adresseUtilisateur.setVille(articleVendu.getUtilisateur().getVille());
-				articleVendu.setLieuRetrait(adresseUtilisateur);
+				throw new BLLexception("Date de début de la vente antérieur à la date de la fin de la vente");
 			}
 			
 			DAOFactory.getDaoArticlesVendus().insert(articleVendu);
+			
+			this.listeArticleVendu = DAOFactory.getDaoArticlesVendus().getAll();
+			for (ArticleVendu articleVenduForEach : listeArticleVendu) {
+				if(articleVendu.getNomArticle().equals(articleVenduForEach.getNomArticle())
+						&& articleVendu.getDescription().equals(articleVenduForEach.getDescription())){
+					articleVendu.setNoArticle(articleVenduForEach.getNoArticle());
+				}
+			}
+			
+			DAOFactory.getDaoRetrait().insert(articleVendu.getLieuRetrait());
+			
 		} catch (Exception e) {
 			throw new BLLexception(e.getMessage());
 		}
@@ -54,7 +59,7 @@ public class VenteManagerImpl implements VenteManager {
 		try {
 			this.listeEncheres = DAOFactory.getDaoEnchere().getAll();
 		} catch (Exception e) {
-			throw new BLLexception("Erreur à la récupération des différentes Enchères");
+			throw new BLLexception("Erreur à la récupération des différentes enchères");
 		}
 		return this.listeEncheres;
 	}
@@ -64,7 +69,7 @@ public class VenteManagerImpl implements VenteManager {
 		try {
 			this.listeArticleVendu = DAOFactory.getDaoArticlesVendus().getAll();
 		} catch (Exception e) {
-			throw new BLLexception("Erreur à la récupération des différents Articles");
+			throw new BLLexception("Erreur à la récupération des différents articles");
 		}
 		return this.listeArticleVendu;
 	}
@@ -133,32 +138,32 @@ public class VenteManagerImpl implements VenteManager {
 
 		if (articleVendu.getDateDebutEncheres() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Date de début de l'article manquant");
 		}
 
 		if (articleVendu.getDateFinEncheres() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Date de fin de l'article manquant");
 		}
 
 		if (articleVendu.getDescription() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Description de l'article manquant");
 		}
 
 		if (articleVendu.getMiseAPrix() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Mise à prix de l'article manquant");
 		}
 
 		if (articleVendu.getNomArticle() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Nom de l'article manquant");
 		}
 
 		if (articleVendu.getUtilisateur() == null) {
 			erreur = true;
-			stringErreur.append("Catégorie de l'article manquant");
+			stringErreur.append("Utilisateur de l'article manquant");
 		}
 
 		if (erreur) {

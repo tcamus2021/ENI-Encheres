@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,11 +21,12 @@
 </head>
 <body>
 	<header class="offset-2 col-10">
-		<h1>ENI-Enchères</h1>
+		<a href="accueil" style="color: black; text-decoration: none;"><h1>ENI-Enchères</h1></a>
 	</header>
+    <div class="col-12 d-flex flex-wrap justify-content-center">${ erreur }</div>
 
 	<main class="d-flex flex-wrap justify-content-center">
-		<form>
+		<form action="accueil" method="post">
 			<div style="margin-top: 1em">
 				<div class="d-flex flex-wrap">
 					<h5>Nouvelle vente</h5>
@@ -32,25 +35,25 @@
 				<div class="corps-connexion-infos col-12">
 					<div style="margin-top: 1em">
 						<label class="col-5" type="text" for="sale-article">
-							Article : </label> <input class="col-6" id="sale-article">
+							Article : </label> <input class="col-6" id="sale-article" name="creation-vente-article">
 					</div>
 
 					<!--  Catégorie-->
 					<div class="input-group mb-3" style="margin-top: 1em">
 						<label class="input-group-text" for="inputGroupSelect01">Catégories</label>
-						<select class="form-select" id="inputGroupSelect01">
-							<option selected>Toutes</option>
+						<select class="form-select" id="inputGroupSelect01" name="creation-vente-categorie">
+							<option selected value="">Toutes</option>
 							<option value="1">Informatique</option>
 							<option value="2">Ameublement</option>
 							<option value="3">Vêtement</option>
-							<option value="3">Sport & Loisirs</option>
+							<option value="4">Sport & Loisirs</option>
 						</select>
 					</div>
 
 					<div class="mb-3">
 						<label for="exampleFormControlTextarea1" class="form-label">Description</label>
 						<textarea class="form-control" id="exampleFormControlTextarea1"
-							rows="3"></textarea>
+							rows="3" name="creation-vente-description"></textarea>
 					</div>
 					<!--  -->
 
@@ -59,7 +62,7 @@
 					<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 						<label class="form-label" for="auction-picture"> Photo de
 							l'article : </label> <input class="form-control" type="file"
-							id="auction-picture" name="file">
+							id="auction-picture" name="creation-vente-photo">
 
 					</div>
 				</div>
@@ -68,23 +71,23 @@
 				<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 					<label class="col-5" for="auction starting price"> Mise à
 						prix :</label> <input class="col-6" type="number"
-						id="auction starting price" min="0">
+						id="auction starting price" min="0" name="creation-vente-prix">
 				</div>
 
 				<!-- Début de l'enchère -->
 				<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 					<label id="auction-start" for="auction-start"> Début de
 						l'enchère : </label> <input type="date" class="col-6"
-						class="bootstrap-datepicker" data-date-format="mm/dd/yyyy"
-						id="auction-start">
+						class="bootstrap-datepicker" data-date-format="yyyy/mm/dd"
+						id="auction-start" name="creation-vente-date-debut">
 				</div>
 
 				<!-- Fin de l'enchère -->
 				<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 					<label class="col-5" id="auction-end" for="auction-end">
 						Fin de l'enchère : </label> <input type="date" class="col-6"
-						class="bootstrap-datepicker" data-date-format="mm/dd/yyyy"
-						id="auction-start">
+						class="bootstrap-datepicker" data-date-format="yyyy/mm/dd"
+						id="auction-start" name="creation-vente-date-fin">
 				</div>
 
 				<!-- Retrait, par défaut adresse du vendeur -->
@@ -93,20 +96,20 @@
 					<!-- Rue -->
 					<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 						<label class="col-5" type="text" for="auction-street"> Rue
-							: </label> <input class="col-6" id="auction-street">
+							: </label> <input class="col-6" id="auction-street"  name="creation-vente-rue">
 					</div>
 
 					<!-- Code postal -->
 					<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 						<label class="col-5" type="text" for="auction-end"> Code
-							postal : </label> <input class="col-6" id="auction-end">
+							postal : </label> <input class="col-6" id="auction-end"  name="creation-vente-cp">
 					</div>
 
 					<!-- Ville -->
 					<div class="corps-connexion-infos col-12" style="margin-top: 1em">
 						<label class="col-5" type="text" for="auction-end"> Ville
 							: </label> <input class="col-6" id="auction-end"
-							style="margin-bottom: 1em">
+							style="margin-bottom: 1em"  name="creation-vente-ville">
 					</div>
 				</section>
 
@@ -117,9 +120,8 @@
 						style="margin-top: 1em">
 						<input type="submit" value="Enregistrer"
 							class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded ">
-						<button
-							class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded ">
-							Annuler</button>
+						<a href="accueil"
+							class="btn-modifier d-flex flex-wrap justify-content-center shadow p-3 mb-5 bg-white rounded ">Annuler</a>
 					</div>
 				</section>
 		</form>

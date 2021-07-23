@@ -102,10 +102,7 @@ public class Retrait {
 	 * @param article
 	 */
 	public void setArticle(ArticleVendu article) {
-		if(this.article == null) {
-			this.article = article;
-			this.article.setLieuRetrait(this);
-		}
+		this.article = article;
 	}
 
 	/**
@@ -128,8 +125,19 @@ public class Retrait {
 
 	@Override
 	public String toString() {
-		return "Retrait [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + ", article="
-				+ article.getNomArticle() + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Retrait [idRetrait=");
+		builder.append(idRetrait);
+		builder.append(", rue=");
+		builder.append(rue);
+		builder.append(", codePostal=");
+		builder.append(codePostal);
+		builder.append(", ville=");
+		builder.append(ville);
+		builder.append(", article=");
+		builder.append(article.getNomArticle());
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

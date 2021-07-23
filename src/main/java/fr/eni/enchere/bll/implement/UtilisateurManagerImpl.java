@@ -1,10 +1,14 @@
 package fr.eni.enchere.bll.implement;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import fr.eni.enchere.bll.BLLFactorySingl;
 import fr.eni.enchere.bll.BLLexception;
 import fr.eni.enchere.bll.interfaces.UtilisateurManager;
+import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 
@@ -16,7 +20,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
 		} catch (Exception e) {
-			throw new BLLexception("Erreur à la récupération de tout les utilisateurs");
+			throw new BLLexception("Erreur à la récupération de tous les utilisateurs");
 		}
 
 		testUtilisateur(utilisateur);
@@ -65,7 +69,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	@Override
 	public List<Utilisateur> getAll() throws BLLexception {
 		try {
-			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
+			miseAJourListe();
 		} catch (Exception e) {
 			throw new BLLexception("Erreur à la récupération des utilisateurs");
 		}
@@ -129,14 +133,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			throw new BLLexception("Erreur, veuillez rentrer une ville");
 		}
 		if (utilisateur.getMotDePasse() == null || utilisateur.getMotDePasse().equals("")) {
-			throw new BLLexception("Erreur, veuillez rentrer un mot de passet");
+			throw new BLLexception("Erreur, veuillez rentrer un mot de passe");
 		}
 		if (utilisateur.getAdministrateur() == null) {
 			throw new BLLexception("Erreur, administrateur manquant");
 		}
 		String testCaractereSpeciaux = utilisateur.getPseudo().replaceAll("[^A-Za-z0-9]", "");
 		if (!testCaractereSpeciaux.equals(utilisateur.getPseudo())) {
-			throw new BLLexception("Uniquement les caractères alphanumérique");
+			throw new BLLexception("Uniquement les caractères alphanumérique dans le pseudo");
 		}
 	}
 
@@ -148,7 +152,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		} catch (Exception e) {
 			throw new BLLexception(e.getMessage());
 		}
-		
+
 		Utilisateur utilisateurCourant = new Utilisateur();
 		for (Utilisateur utilisateurForEach : this.listeUtilisateurs) {
 			if (utilisateurForEach.getPseudo().equals(login)) {
@@ -165,7 +169,52 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 		Integer motDePasseChiffrer = motDePasse.hashCode();
 		if (!motDePasseChiffrer.toString().equals(utilisateurCourant.getMotDePasse())) {
-			throw new BLLexception("Mot de passe incorectes");
+			throw new BLLexception("Mot de passe incorrect");
+		}
+	}
+
+	public void miseAJourListe() throws BLLexception {
+		try {
+			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
+
+			List<Utilisateur> modification = new ArrayList<>();
+			Map<Integer, Integer> lienUtilisateurEncheres = DAOFactory.getDaoLien().lienEnchereUtilisateur();
+
+			for (Map.Entry<Integer, Integer> iteration : lienUtilisateurEncheres.entrySet()) {
+				Utilisateur utilisateurCourant = DAOFactory.getDaoUtilisateurs().getById(iteration.getValue());
+				Enchere enchereCourant = DAOFactory.getDaoEnchere().getById(iteration.getKey());
+
+				for (Utilisateur utilisateurForEach : modification) {
+					if (utilisateurForEach.getNoUtilisateur() == utilisateurCourant.getNoUtilisateur()) {
+						utilisateurCourant = utilisateurForEach;
+						modification.remove(utilisateurForEach);
+					}
+				}
+
+				if (enchereCourant.getIdEnchere() != null) {
+					enchereCourant.setUtilisateur(utilisateurCourant);
+					utilisateurCourant.addListeEncheres(enchereCourant);
+
+					modification.add(utilisateurCourant);
+				}
+			}
+
+			for (Utilisateur utilisateur : this.listeUtilisateurs) {
+				boolean trouve = false;
+				for (Utilisateur utilisateurAvecEnchere : modification) {
+					if(utilisateur.getNoUtilisateur() == utilisateurAvecEnchere.getNoUtilisateur()) {
+						trouve = true;
+					}
+				}
+				if(!trouve) {
+					modification.add(utilisateur);
+				}
+			}
+
+			this.listeUtilisateurs = modification;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BLLexception("Erreur lors de la mise à jour de la liste");
 		}
 	}
 }

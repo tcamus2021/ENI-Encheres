@@ -224,10 +224,7 @@ public class ArticleVendu {
 	 * @param utilisateur
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
-		if (this.utilisateur == null) {
-			this.utilisateur = utilisateur;
-			this.utilisateur.addListeArticlesVendus(this);
-		}
+		this.utilisateur = utilisateur;
 	}
 
 	/**
@@ -245,10 +242,7 @@ public class ArticleVendu {
 	 * @param categorieArticle
 	 */
 	public void setCategorieArticle(Categorie categorieArticle) {
-		if (this.categorieArticle == null) {
-			this.categorieArticle = categorieArticle;
-			this.categorieArticle.addArticleVendu(this);
-		}
+		this.categorieArticle = categorieArticle;
 	}
 
 	/**
@@ -266,10 +260,7 @@ public class ArticleVendu {
 	 * @param lieuRetrait
 	 */
 	public void setLieuRetrait(Retrait lieuRetrait) {
-		if (this.lieuRetrait == null) {
-			this.lieuRetrait = lieuRetrait;
-			this.lieuRetrait.setArticle(this);
-		}
+		this.lieuRetrait = lieuRetrait;
 	}
 
 	/**
@@ -314,27 +305,40 @@ public class ArticleVendu {
 	 * @param enchere
 	 */
 	public void addListeEnchere(Enchere enchere) {
-		boolean trouver = false;
-		if (this.listeEnchere.size() != 0) {
-			for (Enchere enchereForeach : this.listeEnchere) {
-				if (enchereForeach.getIdEnchere() == enchere.getIdEnchere()) {
-					trouver = true;
-				}
-			}
-		}
-		if (!trouver) {
-			this.listeEnchere.add(enchere);
-			enchere.setArticleVendu(this);
-		}
+		this.listeEnchere.add(enchere);
 	}
 
 	@Override
 	public String toString() {
-		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEncheres=" + dateDebutEncheres.toString() + ", dateFinEncheres="
-				+ dateFinEncheres.toString() + ", miseAPrix=" + miseAPrix + ", prixVente=" + prixVente + ", etatVente="
-				+ etatVente + ", utilisateur=" + utilisateur.getPrenom() + ", categorieArticle=" + categorieArticle
-				+ ", lieuRetrait=" + lieuRetrait + ", listeEnchere=" + listeEnchere.size() + "]"; // TODO
+		StringBuilder builder = new StringBuilder();
+		builder.append("ArticleVendu [noArticle=");
+		builder.append(noArticle);
+		builder.append(", nomArticle=");
+		builder.append(nomArticle);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", dateDebutEncheres=");
+		builder.append(dateDebutEncheres);
+		builder.append(", dateFinEncheres=");
+		builder.append(dateFinEncheres);
+		builder.append(", miseAPrix=");
+		builder.append(miseAPrix);
+		builder.append(", prixVente=");
+		builder.append(prixVente);
+		builder.append(", etatVente=");
+		builder.append(etatVente);
+		builder.append(", lienImage=");
+		builder.append(lienImage);
+		builder.append(", utilisateur=");
+		builder.append(utilisateur.getPseudo());
+		builder.append(", categorieArticle=");
+		builder.append(categorieArticle.getLibelle());
+		builder.append(", lieuRetrait=");
+		builder.append(lieuRetrait.getRue());
+		builder.append(", listeEnchere=");
+		builder.append(listeEnchere);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

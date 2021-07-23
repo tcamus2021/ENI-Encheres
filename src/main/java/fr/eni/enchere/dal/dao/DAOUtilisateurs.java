@@ -117,9 +117,10 @@ public class DAOUtilisateurs implements DAOEniEnchere<Utilisateur> {
 			update.setBoolean(11, utilisateur.getAdministrateur());
 			update.setInt(12, utilisateur.getNoUtilisateur());
 			update.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DALexception("Erreur lors de la mise à jour de l'update");
+			throw new DALexception("Erreur lors de la mise à jour");
 		}
 	}
 
@@ -129,6 +130,7 @@ public class DAOUtilisateurs implements DAOEniEnchere<Utilisateur> {
 			PreparedStatement delete = connexion.prepareStatement(deleteCommande);
 			delete.setInt(1, id);
 			delete.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur lors de la suppression");
 		}
