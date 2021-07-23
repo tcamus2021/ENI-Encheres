@@ -68,8 +68,8 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 				articleCourant.setPrixVente(resultat.getInt(7));
 				articleCourant.setLienImage(resultat.getString(10));
 				ret.add(articleCourant);
-				connexion.close();
 			}
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la récupération des articles");
 		}
