@@ -30,11 +30,11 @@ public class VenteManagerImpl implements VenteManager {
 			}
 
 			if (articleVendu.getDateDebutEncheres().before(Date.valueOf(LocalDate.now()))) {
-				throw new BLLexception("Date de début de la vente antérieur à la date du jour");
+				throw new BLLexception("Date de début de la vente antérieure à la date du jour");
 			}
 
 			if (articleVendu.getDateDebutEncheres().after(articleVendu.getDateFinEncheres())) {
-				throw new BLLexception("Date de début de la vente antérieur à la date de la fin de la vente");
+				throw new BLLexception("Date de début de la vente antérieure à la date de la fin de la vente");
 			}
 			
 			DAOFactory.getDaoArticlesVendus().insert(articleVendu);
