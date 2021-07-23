@@ -63,8 +63,8 @@ public class DAOEncheres implements DAOEniEnchere<Enchere> {
 					articleCourant.setNoArticle(resultatSelectByIdArticle.getInt("no_article"));
 					articleCourant.setNomArticle(resultatSelectByIdArticle.getString("nom_article"));
 					articleCourant.setDescription(resultatSelectByIdArticle.getString("description"));
-					articleCourant.setDateDebutEncheres(resultatSelectByIdArticle.getDate("date_debut_enchere"));
-					articleCourant.setDateFinEncheres(resultatSelectByIdArticle.getDate("date_fin_enchere"));
+					articleCourant.setDateDebutEncheres(resultatSelectByIdArticle.getDate("date_debut_encheres"));
+					articleCourant.setDateFinEncheres(resultatSelectByIdArticle.getDate("date_fin_encheres"));
 					articleCourant.setMiseAPrix(resultatSelectByIdArticle.getInt("prix_initial"));
 					articleCourant.setPrixVente(resultatSelectByIdArticle.getInt("prix_vente"));
 					articleCourant.setUtilisateur(null);
@@ -103,6 +103,7 @@ public class DAOEncheres implements DAOEniEnchere<Enchere> {
 			}
 			connexion.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new DALexception("Erreur à la récupération de la liste dans la base de données");
 		}
 		return ret;

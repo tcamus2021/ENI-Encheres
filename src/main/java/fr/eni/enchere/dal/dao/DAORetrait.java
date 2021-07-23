@@ -28,6 +28,7 @@ public class DAORetrait implements DAOEniEnchere<Retrait> {
 			insert.setString(3, retrait.getCodePostal().toString());
 			insert.setString(4, retrait.getVille());
 			insert.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à l'insertion du lieu de retrait");
 		}
@@ -46,6 +47,7 @@ public class DAORetrait implements DAOEniEnchere<Retrait> {
 				retraitCourant.setVille(resultat.getString("ville"));
 				retour.add(retraitCourant);
 			}
+			connexion.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALexception("Erreur à la récupération des lieux de retrait");
@@ -63,6 +65,7 @@ public class DAORetrait implements DAOEniEnchere<Retrait> {
 			retour.setRue(resultat.getString("rue"));
 			retour.setCodePostal(Integer.parseInt(resultat.getString("code_postal")));
 			retour.setVille(resultat.getString("ville"));
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la récupération du lieu de retrait");
 		}
@@ -78,6 +81,7 @@ public class DAORetrait implements DAOEniEnchere<Retrait> {
 			update.setString(3, retrait.getVille());
 			update.setInt(4, retrait.getArticle().getNoArticle());
 			update.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la mise à jour du lieu de retrait");
 		}
@@ -90,6 +94,7 @@ public class DAORetrait implements DAOEniEnchere<Retrait> {
 			PreparedStatement delete = connexion.prepareStatement(deleteCommande);
 			delete.setInt(1, idDarticle);
 			delete.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la suppression du lieu de retrait");
 		}

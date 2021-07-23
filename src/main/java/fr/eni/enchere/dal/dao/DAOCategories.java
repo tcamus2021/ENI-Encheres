@@ -76,8 +76,8 @@ public class DAOCategories implements DAOEniEnchere<Categorie> {
 			System.out.println(categorie);
 			PreparedStatement update = connexion.prepareStatement(updateCommande);
 			update.setString(1, categorie.getLibelle());
-	}
-		catch (Exception e) {
+			connexion.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALexception("Erreur lors de la mise à jour de la base de données");
 		}
@@ -90,6 +90,7 @@ public class DAOCategories implements DAOEniEnchere<Categorie> {
 			PreparedStatement delete = connexion.prepareStatement(deleteCommande);
 			delete.setInt(1, id);
 			delete.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur lors de la suppression");
 		}

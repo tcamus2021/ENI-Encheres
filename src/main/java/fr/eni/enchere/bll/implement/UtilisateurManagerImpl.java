@@ -20,7 +20,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		try {
 			this.listeUtilisateurs = DAOFactory.getDaoUtilisateurs().getAll();
 		} catch (Exception e) {
-			throw new BLLexception("Erreur à la récupération de tout les utilisateurs");
+			throw new BLLexception("Erreur à la récupération de tous les utilisateurs");
 		}
 
 		testUtilisateur(utilisateur);
@@ -133,14 +133,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			throw new BLLexception("Erreur, veuillez rentrer une ville");
 		}
 		if (utilisateur.getMotDePasse() == null || utilisateur.getMotDePasse().equals("")) {
-			throw new BLLexception("Erreur, veuillez rentrer un mot de passet");
+			throw new BLLexception("Erreur, veuillez rentrer un mot de passe");
 		}
 		if (utilisateur.getAdministrateur() == null) {
 			throw new BLLexception("Erreur, administrateur manquant");
 		}
 		String testCaractereSpeciaux = utilisateur.getPseudo().replaceAll("[^A-Za-z0-9]", "");
 		if (!testCaractereSpeciaux.equals(utilisateur.getPseudo())) {
-			throw new BLLexception("Uniquement les caractères alphanumérique");
+			throw new BLLexception("Uniquement les caractères alphanumérique dans le pseudo");
 		}
 	}
 
@@ -169,7 +169,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 		Integer motDePasseChiffrer = motDePasse.hashCode();
 		if (!motDePasseChiffrer.toString().equals(utilisateurCourant.getMotDePasse())) {
-			throw new BLLexception("Mot de passe incorectes");
+			throw new BLLexception("Mot de passe incorrect");
 		}
 	}
 

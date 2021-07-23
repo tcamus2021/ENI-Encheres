@@ -30,11 +30,11 @@ public class VenteManagerImpl implements VenteManager {
 			}
 
 			if (articleVendu.getDateDebutEncheres().before(Date.valueOf(LocalDate.now()))) {
-				throw new BLLexception("Date de début antérieur à la date actuelle");
+				throw new BLLexception("Date de début de la vente antérieur à la date du jour");
 			}
 
 			if (articleVendu.getDateDebutEncheres().after(articleVendu.getDateFinEncheres())) {
-				throw new BLLexception("Date de début avant celle de fin");
+				throw new BLLexception("Date de début de la vente antérieur à la date de la fin de la vente");
 			}
 			
 			DAOFactory.getDaoArticlesVendus().insert(articleVendu);
@@ -59,7 +59,7 @@ public class VenteManagerImpl implements VenteManager {
 		try {
 			this.listeEncheres = DAOFactory.getDaoEnchere().getAll();
 		} catch (Exception e) {
-			throw new BLLexception("Erreur à la récupération des différentes Enchères");
+			throw new BLLexception("Erreur à la récupération des différentes enchères");
 		}
 		return this.listeEncheres;
 	}
@@ -69,7 +69,7 @@ public class VenteManagerImpl implements VenteManager {
 		try {
 			this.listeArticleVendu = DAOFactory.getDaoArticlesVendus().getAll();
 		} catch (Exception e) {
-			throw new BLLexception("Erreur à la récupération des différents Articles");
+			throw new BLLexception("Erreur à la récupération des différents articles");
 		}
 		return this.listeArticleVendu;
 	}

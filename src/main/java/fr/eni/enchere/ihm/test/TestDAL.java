@@ -186,17 +186,28 @@ System.out.println("_________________Test DAO Encheres____________________");
 			Enchere enchere1 = new Enchere();
 			enchere1.setDateEnchere(Date.valueOf(LocalDate.now()));
 			enchere1.setMontantEnchere(200);
-			enchere1.setUtilisateur(DAOFactory.getDaoUtilisateurs().getById(69));		
+			Utilisateur utilisateur3 = DAOFactory.getDaoUtilisateurs().getById(65);
+			enchere1.setUtilisateur(utilisateur3);
+			enchere1.setUtilisateur(DAOFactory.getDaoUtilisateurs().getById(69));
+			
+		
+			System.out.println("ici : "+DAOFactory.getDaoArticlesVendus().getById(1));
+			
+		
 			enchere1.setArticleVendu(DAOFactory.getDaoArticlesVendus().getById(1));
-			DAOFactory.getDaoEnchere().insert(enchere1);
+			System.out.println("TEST");
+//			DAOFactory.getDaoEnchere().insert(enchere1);
 			
 			Enchere enchere2 = new Enchere();
 			enchere2.setDateEnchere(Date.valueOf(LocalDate.now()));
 			enchere2.setMontantEnchere(300);
-			enchere2.setArticleVendu(palme);
-			enchere2.setUtilisateur(robert);
+	
+			
+			enchere2.setUtilisateur(DAOFactory.getDaoUtilisateurs().getById(65));
+			enchere2.setArticleVendu(DAOFactory.getDaoArticlesVendus().getById(3));
+//			DAOFactory.getDaoEnchere().insert(enchere2);
 //			
-//			System.out.println(DAOFactory.getDaoEnchere().getById(1));
+			System.out.println(DAOFactory.getDaoEnchere().getById(1));
 //			
 //			DAOFactory.getDaoEnchere().insert(enchere2);
 //			
@@ -204,7 +215,6 @@ System.out.println("_________________Test DAO Encheres____________________");
 //			
 //			DAOFactory.getDaoEnchere().delete(2);
 //
-//			System.out.println(DAOFactory.getDaoEnchere().getAll());
 //			
 //			Enchere enchere3 = DAOFactory.getDaoEnchere().getById(1);
 //			enchere3.setMontantEnchere(500);

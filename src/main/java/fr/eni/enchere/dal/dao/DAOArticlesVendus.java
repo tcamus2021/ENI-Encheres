@@ -43,6 +43,8 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 			insert.setString(9, article.getLienImage());
 
 			insert.executeUpdate();
+			connexion.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALexception("Erreur à l'insertion de l'article");
@@ -66,6 +68,7 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 				articleCourant.setPrixVente(resultat.getInt(7));
 				articleCourant.setLienImage(resultat.getString(10));
 				ret.add(articleCourant);
+				connexion.close();
 			}
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la récupération des articles");
@@ -112,6 +115,7 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 			update.setString(9, article.getLienImage());
 			update.setInt(10, article.getNoArticle());
 			update.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DALexception("Erreur à la mise à jour");
@@ -124,6 +128,7 @@ public class DAOArticlesVendus implements DAOEniEnchere<ArticleVendu> {
 			PreparedStatement delete = connexion.prepareStatement(deleteCommande);
 			delete.setInt(1, id);
 			delete.executeUpdate();
+			connexion.close();
 		} catch (Exception e) {
 			throw new DALexception("Erreur à la supression");
 		}
