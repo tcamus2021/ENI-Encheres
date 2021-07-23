@@ -54,7 +54,7 @@
 	          <div class="corps-connexion-infos col-12">
 	            <div style="margin-top:1em">
 	            <label class="col-4" for="profile-zip-code">Code postal : </label>
-	            <input type="number" class="col-7" id="profile-zip-code" name="create-code-postal">
+	            <input type="number" class="col-7" id="profile-zip-code" min="0"  name="create-code-postal">
 	          </div>
 	          <div class="corps-connexion-infos col-12r">
 	            <div style="margin-top:1em">
