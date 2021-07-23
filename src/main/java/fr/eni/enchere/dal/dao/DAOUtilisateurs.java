@@ -132,6 +132,7 @@ public class DAOUtilisateurs implements DAOEniEnchere<Utilisateur> {
 			delete.executeUpdate();
 			connexion.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new DALexception("Erreur lors de la suppression");
 		}
 	}
